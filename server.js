@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 const express = require('express'),
       app = express(),
       morgan = require('morgan'),
@@ -13,5 +13,5 @@ app.get('/', function (req, res) {
 });
 
 app.listen(portNumber, function () {
-  console.log("Listening on port " + portNumber);
+  console.log(`Listening on port ${portNumber}`);
 });

@@ -22,4 +22,4 @@
       'rxjs': {defaultExtension: 'js'}
     }
   });
-})(this);
+}(this));
