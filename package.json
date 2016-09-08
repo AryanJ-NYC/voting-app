@@ -4,10 +4,10 @@
   "description": "A voting app created with Angular 2 written in TypeScript, Node.js and MongoDB.",
   "main": "server.js",
   "scripts": {
-    "start": "tsc && node server.js",
-    "postinstall": "typings install",
+    "start": "node server.js",
+    "postinstall": "typings install && tsc",
     "node": "node",
-    "test": "typings install && tsc && node server.js",
+    "test": "./node_modules/.bin/karma start --browsers Firefox --single-run",
     "tsc": "tsc",
     "typings": "typings"
   },
@@ -41,7 +41,13 @@
     "zone.js": "^0.6.17"
   },
   "devDependencies": {
-    "concurrently": "^2.0.0"
+    "concurrently": "^2.0.0",
+    "jasmine-core": "^2.5.1",
+    "karma": "^1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.0.2"
   },
   "bugs": {
     "url": "https://github.com/AryanJ-NYC/voting-app/issues"
