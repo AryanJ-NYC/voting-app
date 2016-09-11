@@ -4,7 +4,7 @@
   "description": "A voting app created with Angular 2 written in TypeScript, Node.js and MongoDB.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node src/server/server.js",
     "postinstall": "typings install && tsc",
     "node": "node",
     "test": "./node_modules/.bin/karma start --browsers Firefox --single-run",

@@ -1,5 +1,6 @@
 .idea
 src/**/*.js
+!**/server.js
 src/**/*.js.map
 node_modules
 typings

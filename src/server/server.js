@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 // views settings
-app.use(express.static(__dirname));
+app.use(express.static(path.join(`${__dirname}/../../`)));
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -22,7 +22,7 @@ app.use(function (err, req, res, next) {
 
 // routes
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'src/index.html'));
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 app.listen(portNumber, function () {
