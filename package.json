@@ -2,7 +2,7 @@
   "name": "angular-2-voting-app",
   "version": "1.0.0",
   "description": "A voting app created with Angular 2 written in TypeScript, Node.js and MongoDB.",
-  "main": "server.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "node src/server/server.js",
     "postinstall": "typings install && tsc",
