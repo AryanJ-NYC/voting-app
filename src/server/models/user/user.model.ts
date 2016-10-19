@@ -2,7 +2,7 @@
 import mongoose = require('mongoose');
 import bcrypt = require('bcrypt-nodejs');
 
-interface User extends mongoose.Document {
+interface IUser extends mongoose.Document {
   email: string;
   password: string;
   updatedAt: string;
@@ -15,7 +15,15 @@ let userSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 userSchema.pre('save', function (next) {
-  this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));
-}.bind(this));
+  let user = this;
+  bcrypt.hash(user.password, bcrypt.genSaltSync(8), null, function (err, hash) {
+    if (err) return next(err);
 
-export const User = mongoose.model<User>('User', userSchema);
+    // override the cleartext password with the hashed one
+    user.password = hash;
+    next();
+  });
+});
+
+const User = mongoose.model<IUser>('User', userSchema);
+export = User;

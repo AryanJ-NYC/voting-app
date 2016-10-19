@@ -1,5 +1,5 @@
 'use strict';
-import { User } from './user.model';
+import User = require('./user.model');
 
 describe('user object', function () {
   it('has an email key', function () {
@@ -11,12 +11,7 @@ describe('user object', function () {
     let user = new User();
     expect(user.password).toEqual(jasmine.anything);
   });
-  
-  it('has a password key', function () {
-    let user = new User();
-    expect(user.password).toEqual(jasmine.anything);
-  });
-  
+
   it('has a updatedAt key', function () {
     let user = new User();
     expect(user.updatedAt).toEqual(jasmine.anything);

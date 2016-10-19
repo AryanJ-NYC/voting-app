@@ -1,6 +1,10 @@
 .idea
 src/**/*.js
-!**/server.js
 src/**/*.js.map
 node_modules
 typings
+.env
+
+# include following files
+!**/server.js
+!src/server/routes/*
