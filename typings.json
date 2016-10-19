@@ -1,9 +1,10 @@
 {
   "globalDependencies": {
+    "bcrypt-nodejs": "registry:dt/bcrypt-nodejs#0.0.0+20160316155526",
     "core-js": "registry:dt/core-js#0.0.0+20160914114559",
     "jasmine": "registry:dt/jasmine#2.5.0+20161003201800",
     "mongodb": "registry:dt/mongodb#2.1.0+20160602142941",
     "mongoose": "registry:dt/mongoose#4.5.9+20161010180758",
-    "node": "registry:dt/node#6.0.0+20161014191813"
+    "node": "registry:dt/node#6.0.0+20161019125345"
   }
 }
