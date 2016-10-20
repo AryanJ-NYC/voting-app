@@ -1,24 +1,19 @@
 'use strict';
 import User = require('./user.model');
 
-describe('user object', function () {
-  it('has an email key', function () {
-    let user = new User();
-    expect(user.email).toEqual(jasmine.anything);
-  });
-  
-  it('has a password key', function () {
-    let user = new User();
-    expect(user.password).toEqual(jasmine.anything);
-  });
+describe('user model', function () {
+  describe('schemas', function () {
+    let user = new User({
+      'email': 'test@test.com',
+      'password': 'test1234'
+    });
+    let unhashedPassword = user.password;
 
-  it('has a updatedAt key', function () {
-    let user = new User();
-    expect(user.updatedAt).toEqual(jasmine.anything);
-  });
-  
-  it('has a createdAt key', function () {
-    let user = new User();
-    expect(user.createdAt).toEqual(jasmine.anything);
-  });
+    it('hashes passwords before save', function () {
+      user.save(function (err, user) {
+        if (err) fail('save function throws error');
+        expect(user.password).not.toEqual(unhashedPassword);
+      });
+    })
+  })
 });
