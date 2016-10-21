@@ -24,8 +24,8 @@ module.exports = function (passport) {
     process.nextTick(function () {
       // find user that is same as form email to see if already exists
       User.findOne({'email': email}, function (err, user) {
-        if (err) return done(err);
-        if (user) return done(null, false);
+        if (err) return done(err, false);
+        if (user) return done(null, false, { message: 'Email address already registered' });
 
         // if user is not found, create new user
         let newUser = new User({
@@ -33,7 +33,10 @@ module.exports = function (passport) {
           password: password
         });
         newUser.save(function (err) {
-          if (err) throw err;
+          if (err) {
+            let errMessage = err.errors.email.message || err.errors.password.message || err.message;
+            return done(null, false, { message: errMessage });
+          }
           return done(null, newUser);
         });
       });
