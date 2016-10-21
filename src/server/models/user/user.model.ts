@@ -10,8 +10,12 @@ interface IUser extends mongoose.Document {
 };
 
 let userSchema = new mongoose.Schema({
-  email        : { type: String, required: true },
-  password     : { type: String, required: true },
+  email: {
+    type: String,
+    required: [true, 'An email address is required'],
+    unique: true,
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'] },
+  password: { type: String, required: [true, 'An password is required'] },
 }, { timestamps: true });
 
 userSchema.pre('save', function (next) {
