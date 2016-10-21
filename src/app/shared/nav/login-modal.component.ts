@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { User } from '../../users/shared/user.model';
+import { User } from '../../users/shared/user';
+import { UserService } from '../../users/shared/user.service';
 
 @Component({
   moduleId: module.id,
@@ -11,8 +12,9 @@ import { User } from '../../users/shared/user.model';
 export class LoginModalComponent {
   @Input()
   user: User = new User();
-  
-  login() {
-    
-  }
+  private errorMessage: string;
+
+  constructor (private userService: UserService) { }
+
+  login() { }
 }
