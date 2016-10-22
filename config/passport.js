@@ -25,7 +25,7 @@ module.exports = function (passport) {
       // find user that is same as form email to see if already exists
       User.findOne({'email': email}, function (err, user) {
         if (err) return done(err, false);
-        if (user) return done(null, false, { message: 'Email address already registered' });
+        if (user) return done(null, false, { message: 'Email address already registered.' });
 
         // if user is not found, create new user
         let newUser = new User({

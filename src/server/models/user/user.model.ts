@@ -14,8 +14,8 @@ let userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'An email address is required'],
     unique: true,
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address'] },
-  password: { type: String, required: [true, 'A password is required'] },
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address.'] },
+  password: { type: String, required: [true, 'A password is required.'] },
 }, { timestamps: true });
 
 userSchema.pre('save', function (next) {

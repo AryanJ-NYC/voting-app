@@ -17,6 +17,10 @@ export class SignupModalComponent {
 
   constructor (private userService: UserService) { }
 
+  clearErrorMessage() {
+    this.errorMessage = '';
+  }
+
   signup() {
     if (this.user.password == this.confirmPassword) {
       this.userService.addUser(this.user)
