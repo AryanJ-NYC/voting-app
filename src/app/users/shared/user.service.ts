@@ -7,6 +7,8 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class UserService {
   private apiRoot: string;
+  private usersRoute: string;
+
   constructor(private http: Http) {
     this.apiRoot = '/api';
     this.usersRoute = this.apiRoot + '/users';

@@ -1,6 +1,7 @@
 const router = require('express').Router(),
       passport = require('passport');
 
+// POST - creates new user
 router.post('/', function (req, res, next) {
   passport.authenticate('local-signup', function (err, user, info) {
     if (err) return next(err);

@@ -23,7 +23,7 @@ export class SignupModalComponent {
         .subscribe(
           user => {
             console.log(user);
-            if (res.hasOwnProperty('_id')) {
+            if (user.hasOwnProperty('_id')) {
               console.log('New user!')
             }
           },
@@ -31,6 +31,8 @@ export class SignupModalComponent {
             this.errorMessage = error.message;
           }
         );
+    } else {
+      this.errorMessage = 'Passwords do not match.';
     }
   }
 }

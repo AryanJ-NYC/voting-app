@@ -53,9 +53,9 @@ module.exports = function (passport) {
       // find user
       User.findOne({'email': email}, function (err, user) {
         if (err) return done(err);
-        if (!user) return done(null, false, { 'message': 'Incorrect username'});
+        if (! user) return done(null, false, { 'message': 'Account does not exist.'});
 
-        if (!user.validPassword(password)) return done(null, false, { 'message': 'Incorrect password'});
+        if (!user.validPassword(password)) return done(null, false, { 'message': 'Incorrect password.'});
         return done(null, user);
       });
   }));

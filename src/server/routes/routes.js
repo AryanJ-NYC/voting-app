@@ -1,7 +1,9 @@
 'use strict';
 const router = require('express').Router(),
-      userRoutes = require('./user/user.routes');
+      sessionRoutes = require('./session/sessions.routes'),
+      userRoutes = require('./user/users.routes');
 
+router.use('/sessions', sessionRoutes);
 router.use('/users', userRoutes);    
 
 module.exports = router;

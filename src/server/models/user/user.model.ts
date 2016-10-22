@@ -29,5 +29,10 @@ userSchema.pre('save', function (next) {
   });
 });
 
+// check if password is valid
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
+
 const User = mongoose.model<IUser>('User', userSchema);
 export = User;

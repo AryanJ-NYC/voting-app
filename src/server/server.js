@@ -11,6 +11,9 @@ const express = require('express'),
 
 if (process.env.NODE_ENV == 'development') {
   require('dotenv').config();
+  app.use(morgan('dev'));
+} else {
+  app.use(morgan('combined'));
 }
 
 // connect to database
@@ -33,7 +36,6 @@ require('../../config/passport')(passport);
 // basic setup
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(morgan('dev'));
 
 // views settings
 app.use(express.static(path.join(`${__dirname}/../../`)));
