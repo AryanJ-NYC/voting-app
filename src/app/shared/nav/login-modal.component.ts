@@ -28,6 +28,7 @@ export class LoginModalComponent {
           if (user.hasOwnProperty('_id')) {
             this.user = user;
             this.onSubmitted.emit(user);
+            this.loginModal.hide();
           }
         },
         error => {

@@ -30,6 +30,7 @@ export class SignupModalComponent {
             if (user.hasOwnProperty('_id')) {
               this.user = user;
               this.onSubmitted.emit(user);
+              this.signupModal.hide();
             }
           },
           error => {
