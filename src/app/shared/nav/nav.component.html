@@ -14,8 +14,8 @@
 
     <div *ngIf="!user" class="collapse navbar-collapse" [collapse]="isCollapsed" id="nav-items">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#signup-modal">Sign Up</a></li>
+        <li><a href="#" (click)="showLoginModal()">Login</a></li>
+        <li><a href="#" (click)="showSignupModal()">Sign Up</a></li>
       </ul>
     </div>
 

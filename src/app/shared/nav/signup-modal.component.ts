@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { User } from '../../users/shared/user';
 import { UserService } from '../../users/shared/user.service';
@@ -12,16 +12,17 @@ import { UserService } from '../../users/shared/user.service';
 export class SignupModalComponent {
   @Input() user: User = new User();
   @Output() onSubmitted = new EventEmitter<User>();
+  @ViewChild('signupModal') signupModal;
   private errorMessage: string;
   private confirmPassword: string;
 
   constructor (private userService: UserService) { }
 
-  clearErrorMessage() {
+  clearErrorMessage(): void {
     this.errorMessage = '';
   }
 
-  signup() {
+  signup(): void {
     if (this.user.password == this.confirmPassword) {
       this.userService.addUser(this.user)
         .subscribe(
@@ -38,5 +39,9 @@ export class SignupModalComponent {
     } else {
       this.errorMessage = 'Passwords do not match.';
     }
+  }
+
+  showModal(): void {
+    this.signupModal.show();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { User } from '../../users/shared/user';
 import { UserService } from '../../users/shared/user.service';
@@ -12,9 +12,14 @@ import { UserService } from '../../users/shared/user.service';
 export class LoginModalComponent {
   @Input() user: User = new User();
   @Output() onSubmitted = new EventEmitter<User>();
+  @ViewChild('loginModal') loginModal;
   private errorMessage: string;
 
   constructor (private userService: UserService) { }
+
+  clearErrorMessage(): void {
+    this.errorMessage = '';
+  }
 
   login() {
     this.userService.login(this.user)
@@ -29,5 +34,9 @@ export class LoginModalComponent {
           this.errorMessage = error.message;
         }
       );
+  }
+
+  showModal(): void {
+    this.loginModal.show();
   }
 }
