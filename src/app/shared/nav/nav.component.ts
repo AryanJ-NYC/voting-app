@@ -9,6 +9,7 @@ import {User} from "../../users/shared/user";
 })
 
 export class NavComponent {
+  private isCollapsed: boolean = true;
   private user: User;
 
   changeUser(user: User) {
