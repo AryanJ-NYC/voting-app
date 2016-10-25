@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { User } from '../../users/shared/user';
 import { UserService } from '../../users/shared/user.service';
@@ -10,11 +10,24 @@ import { UserService } from '../../users/shared/user.service';
 })
 
 export class LoginModalComponent {
-  @Input()
-  user: User = new User();
+  @Input() user: User = new User();
+  @Output() onSubmitted = new EventEmitter<User>();
   private errorMessage: string;
 
   constructor (private userService: UserService) { }
 
-  login() { }
+  login() {
+    this.userService.login(this.user)
+      .subscribe(
+        user => {
+          if (user.hasOwnProperty('_id')) {
+            this.user = user;
+            this.onSubmitted.emit(user);
+          }
+        },
+        error => {
+          this.errorMessage = error.message;
+        }
+      );
+  }
 }

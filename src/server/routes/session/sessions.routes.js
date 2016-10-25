@@ -1,7 +1,7 @@
 const router = require('express').Router(),
       passport = require('passport');
 
-// GET - logs user in
+// POST - log user in
 router.post('/', function (req, res, next) {
   passport.authenticate('local-login', function (err, user, info) {
     if (err) return next(err);
