@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ng2-bootstrap/components/modal';
 
 import { User } from '../../users/shared/user';
 import { UserService } from '../../users/shared/user.service';
@@ -12,7 +13,7 @@ import { UserService } from '../../users/shared/user.service';
 export class SignupModalComponent {
   @Input() user: User = new User();
   @Output() onSubmitted = new EventEmitter<User>();
-  @ViewChild('signupModal') signupModal;
+  @ViewChild('signupModal') signupModal: ModalDirective;
   private errorMessage: string;
   private confirmPassword: string;
 
