@@ -35,4 +35,10 @@ export class UserService {
                .map(res => res.json())
                .catch(err => Observable.throw(err.json()));
   }
+
+  getSession(): Observable<User> {
+    return this.http.get(this.sessionsRoute)
+               .map(res => res.json())
+               .catch(err => Observable.throw(err.json()));
+  }
 }

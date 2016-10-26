@@ -18,4 +18,15 @@ router.post('/', function (req, res, next) {
   })(req, res, next);
 });
 
+router.get('/', function (req, res, next) {
+  if (req.isAuthenticated()) {
+    res.json({
+      "_id": req.user._id,
+      "email": req.user.email,
+    });
+  } else {
+    res.status(401).json({ "error": "You are not authorized to see this information."});
+  }
+});
+
 module.exports = router;

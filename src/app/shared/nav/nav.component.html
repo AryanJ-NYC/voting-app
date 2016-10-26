@@ -12,7 +12,7 @@
       <p class="navbar-brand">Voting App</p>
     </div>
 
-    <div class="collapse navbar-collapse" [collapse]="isCollapsed" id="nav-items">
+    <div *ngIf="!fetchingUserData" class="collapse navbar-collapse" [collapse]="isCollapsed" id="nav-items">
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!user"><a href="#" (click)="showLoginModal()">Login</a></li>
         <li *ngIf="!user"><a href="#" (click)="showSignupModal()">Sign Up</a></li>
