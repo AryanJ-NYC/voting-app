@@ -17,7 +17,7 @@
         <li *ngIf="!user"><a href="#" (click)="showLoginModal()">Login</a></li>
         <li *ngIf="!user"><a href="#" (click)="showSignupModal()">Sign Up</a></li>
         <li *ngIf="user"><a href="#">Create Poll</a></li>
-        <li *ngIf="user"><a href="#">Logout</a></li>
+        <li *ngIf="user"><a href="#" (click)="logout()">Logout</a></li>
       </ul>
     </div>
   </div><!-- /.container-fluid -->

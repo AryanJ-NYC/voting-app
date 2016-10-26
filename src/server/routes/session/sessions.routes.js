@@ -18,6 +18,7 @@ router.post('/', function (req, res, next) {
   })(req, res, next);
 });
 
+// GET user session
 router.get('/', function (req, res, next) {
   if (req.isAuthenticated()) {
     res.json({
@@ -27,6 +28,12 @@ router.get('/', function (req, res, next) {
   } else {
     res.status(401).json({ "error": "You are not authorized to see this information."});
   }
+});
+
+// DELETE user session (logout)
+router.delete('/', function (req, res) {
+  req.logout();
+  res.status(205).end();
 });
 
 module.exports = router;

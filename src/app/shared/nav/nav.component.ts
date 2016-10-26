@@ -47,4 +47,11 @@ export class NavComponent implements OnInit {
   showSignupModal(): void {
     this.signupModal.showModal();
   }
+
+  logout(): void {
+    this.userService.destroySession().subscribe(
+      () {
+        this.user = null;
+      });
+  }
 }
