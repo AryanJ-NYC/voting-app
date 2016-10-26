@@ -9,18 +9,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Voting App</a>
+      <p class="navbar-brand">Voting App</p>
     </div>
 
-    <div *ngIf="!user" class="collapse navbar-collapse" [collapse]="isCollapsed" id="nav-items">
+    <div class="collapse navbar-collapse" [collapse]="isCollapsed" id="nav-items">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" (click)="showLoginModal()">Login</a></li>
-        <li><a href="#" (click)="showSignupModal()">Sign Up</a></li>
+        <li *ngIf="!user"><a href="#" (click)="showLoginModal()">Login</a></li>
+        <li *ngIf="!user"><a href="#" (click)="showSignupModal()">Sign Up</a></li>
+        <li *ngIf="user"><a href="#">Create Poll</a></li>
       </ul>
     </div>
-
-    <p *ngIf="user" class="navbar-text navbar-right">
-      Signed in as {{ user.email }}
-    </p>
   </div><!-- /.container-fluid -->
 </nav>
