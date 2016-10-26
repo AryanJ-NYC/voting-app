@@ -14,9 +14,13 @@ interface IPoll extends mongoose.Document {
 }
 
 let pollSchema = new mongoose.Schema({
-  title: String,
-  options: [{ name: String, votes: Number }]
+  creatorId: { type: mongoose.Schema.Types.ObjectId },
+  title: { type: String, required: true },
+  options: { type: [{
+    name: { type: String, required: true },
+    votes: [ String ] // either IP address or ObjectId of user
+  }], required: true }
 }, { timestamps: true });
 
-const Poll = mongoose.model<IPoll>('Poll', userSchema);
+const Poll = mongoose.model<IPoll>('Poll', pollSchema);
 export = Poll;

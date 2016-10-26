@@ -41,8 +41,7 @@ module.exports = function (passport) {
         });
       });
     });
-  }
-  ));
+  }));
   
   // local login
   passport.use('local-login', new LocalStrategy({
