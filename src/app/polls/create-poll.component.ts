@@ -20,12 +20,16 @@ export class CreatePollComponent {
     this.poll.options = [ newOption ];
   }
 
+  private sharePoll(poll: Poll): void {
+    this.pollService.broadcastPoll(poll);
+  }
+
   createPoll() {
-    console.log(this.poll);
     this.pollService.create(this.poll)
         .subscribe(poll => {
           if (poll.hasOwnProperty('_id')) {
             this.poll = poll;
+            this.sharePoll(this.poll);
             this.createPollModal.hide();
           }
         }, error => {

@@ -11,7 +11,12 @@ import { PollService } from '../shared/poll.service';
 export class PollListComponent implements OnInit {
   private polls: Poll[];
 
-  constructor(private pollService: PollService) { }
+  constructor(private pollService: PollService) {
+    pollService.pollCreated$.subscribe(
+      poll => {
+        this.polls.push(poll);
+      });
+  }
 
   ngOnInit() {
     this.getPolls();
