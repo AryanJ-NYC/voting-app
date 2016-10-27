@@ -2,7 +2,8 @@ import { Component, ViewContainerRef } from '@angular/core';
 
 @Component({
     selector: 'my-app',
-    template: '<navigation></navigation>'
+    template: `<navigation></navigation>
+               <router-outlet></router-outlet>`
 })
 
 export class AppComponent {
