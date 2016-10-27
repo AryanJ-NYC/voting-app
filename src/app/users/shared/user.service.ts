@@ -42,7 +42,7 @@ export class UserService {
                .catch(err => Observable.throw(err.json()));
   }
 
-  destroySession(): void {
+  destroySession(): Observable {
     return this.http.delete(this.sessionsRoute)
                .map(() => null)
                .catch(err => Observable.throw(err.json()));

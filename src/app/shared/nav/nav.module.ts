@@ -5,13 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ng2-bootstrap/components/modal';
 import { NgModule } from '@angular/core';
 
+import { CreatePollComponent } from '../../polls/create-poll.component';
 import { LoginModalComponent } from './login-modal.component';
 import { NavComponent } from './nav.component';
 import { SignupModalComponent } from './signup-modal.component';
 
 @NgModule({
   imports: [ AlertModule, CollapseModule, CommonModule, FormsModule, ModalModule ],
-  declarations: [ LoginModalComponent, NavComponent, SignupModalComponent ],
+  declarations: [ CreatePollComponent, LoginModalComponent, NavComponent, SignupModalComponent ],
   exports: [ NavComponent ]
 })
 

@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { User } from "../../users/shared/user";
-import { LoginModalComponent } from "./login-modal.component";
-import { SignupModalComponent } from "./signup-modal.component";
+import { CreatePollComponent } from '../../polls/create-poll.component';
+import { LoginModalComponent } from './login-modal.component';
+import { SignupModalComponent } from './signup-modal.component';
 import { UserService } from '../../users/shared/user.service';
 
 @Component({
@@ -13,6 +14,7 @@ import { UserService } from '../../users/shared/user.service';
 
 export class NavComponent implements OnInit {
   private isCollapsed: boolean = true;
+  @ViewChild(CreatePollComponent) createPollModal: CreatePollComponent;
   @ViewChild(LoginModalComponent) loginModal: LoginModalComponent;
   @ViewChild(SignupModalComponent) signupModal: SignupModalComponent;
   private user: User;
@@ -40,6 +42,10 @@ export class NavComponent implements OnInit {
     this.user = user;
   }
 
+  showCreatePollModal(): void {
+    this.createPollModal.showModal();
+  }
+
   showLoginModal(): void {
     this.loginModal.showModal();
   }
@@ -50,7 +56,7 @@ export class NavComponent implements OnInit {
 
   logout(): void {
     this.userService.destroySession().subscribe(
-      () {
+      () => {
         this.user = null;
       });
   }

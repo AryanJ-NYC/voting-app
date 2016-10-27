@@ -1,5 +1,6 @@
 <login-modal (onSubmitted)="changeUser($event)"></login-modal>
 <signup-modal (onSubmitted)="changeUser($event)"></signup-modal>
+<create-poll></create-poll>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -16,7 +17,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!user"><a href="#" (click)="showLoginModal()">Login</a></li>
         <li *ngIf="!user"><a href="#" (click)="showSignupModal()">Sign Up</a></li>
-        <li *ngIf="user"><a href="#">Create Poll</a></li>
+        <li *ngIf="user" (click)="showCreatePollModal()"><a href="#">Create Poll</a></li>
         <li *ngIf="user"><a href="#" (click)="logout()">Logout</a></li>
       </ul>
     </div>

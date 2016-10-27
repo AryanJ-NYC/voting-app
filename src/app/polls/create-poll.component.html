@@ -1,0 +1,27 @@
+<!-- Create Poll Modal -->
+<div bsModal #createPollModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="login-modal-title">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="createPollModal.hide()" aria-label="close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="login-modal-title">Create Poll</h4>
+      </div>
+
+      <div class="modal-body">
+        <alert type="danger" dismissible="true" dismissOnTimeout="3000" *ngIf="errorMessage" (close)="clearErrorMessage()">
+          {{ errorMessage }}
+        </alert>
+        <form>
+          <div class="form-group">
+            <label>Poll Title</label>
+            <input type="text" class="form-control" [(ngModel)]="poll.title" name="title" required >
+          </div>
+          <div class="form-group">
+            <label>Options</label>
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
