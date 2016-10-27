@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Poll } from '../shared/poll';
 import { PollService } from '../shared/poll.service';
 
 @Component({

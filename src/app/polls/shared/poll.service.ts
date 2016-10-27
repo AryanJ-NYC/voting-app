@@ -9,7 +9,7 @@ import { Poll } from './poll';
 export class PollService {
 
   // Observable string sources
-  private pollCreatedSource = new Subject<string>();
+  private pollCreatedSource = new Subject<Poll>();
 
   // Observable string streams
   pollCreated$ = this.pollCreatedSource.asObservable();
