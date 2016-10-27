@@ -1,5 +1,8 @@
 <div class="container-fluid">
-  <div *ngFor="let poll of polls" class="col-md-offset-2 col-md-10">
-    {{ poll.title }}
+  <h1 class="text-center">Polls</h1>
+  <div class="list-group">
+    <a *ngFor="let poll of polls" href="#" class="text-center list-group-item col-lg-6 col-xs-12">
+      {{ poll.title }}
+    </a>
   </div>
 </div>
