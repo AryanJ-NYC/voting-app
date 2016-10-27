@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response, RequestOptions } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import { User } from './user';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
@@ -42,7 +42,7 @@ export class UserService {
                .catch(err => Observable.throw(err.json()));
   }
 
-  destroySession(): Observable {
+  destroySession(): Observable<void> {
     return this.http.delete(this.sessionsRoute)
                .map(() => null)
                .catch(err => Observable.throw(err.json()));

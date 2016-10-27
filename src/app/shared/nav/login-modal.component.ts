@@ -24,18 +24,17 @@ export class LoginModalComponent {
 
   login() {
     this.userService.login(this.user)
-      .subscribe(
-        user => {
-          if (user.hasOwnProperty('_id')) {
-            this.user = user;
-            this.onSubmitted.emit(user);
-            this.loginModal.hide();
-          }
-        },
-        error => {
-          this.errorMessage = error.message;
-        }
-      );
+        .subscribe(
+            user => {
+              if (user.hasOwnProperty('_id')) {
+                this.onSubmitted.emit(user);
+                this.user = new User();
+                this.loginModal.hide();
+              }
+            },
+            error => {
+              this.errorMessage = error.message;
+            });
   }
 
   showModal(): void {

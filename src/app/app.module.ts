@@ -5,13 +5,14 @@ import './rxjs-operators';
 
 import { AppComponent }  from './app.component';
 import { NavModule } from './shared/nav/nav.module';
+import { PollService } from './polls/shared/poll.service';
 import { UserService } from './users/shared/user.service';
 
 @NgModule({
   imports:      [ BrowserModule, HttpModule, NavModule ],
   declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ],
-  providers:    [ UserService ]
+  providers:    [ PollService, UserService ]
 })
 
 export class AppModule { }

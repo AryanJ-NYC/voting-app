@@ -1,7 +1,8 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/components/modal';
 
-import { Poll } from './poll';
+import { Poll } from './shared/poll';
+import { PollService } from './shared/poll.service';
 
 @Component({
   moduleId: module.id,
@@ -14,7 +15,29 @@ export class CreatePollComponent {
   private errorMessage: string;
   @Input() poll: Poll = new Poll();
 
+  constructor(private pollService: PollService) {
+    let newOption = { name: '' };
+    this.poll.options = [ newOption ];
+  }
+
+  createPoll() {
+    console.log(this.poll);
+    this.pollService.create(this.poll)
+        .subscribe(poll => {
+          if (poll.hasOwnProperty('_id')) {
+            this.poll = poll;
+            this.createPollModal.hide();
+          }
+        }, error => {
+          this.errorMessage = error.message;
+        });
+  }
+
   showModal(): void {
     this.createPollModal.show();
+  }
+
+  clearErrorMessage(): void {
+    this.errorMessage = '';
   }
 }

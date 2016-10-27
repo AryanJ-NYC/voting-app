@@ -18,8 +18,9 @@
           </div>
           <div class="form-group">
             <label>Options</label>
+            <input type="text" class="form-control" [(ngModel)]="poll.options[0].name" name="option0" />
           </div>
-          <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+          <button type="submit" class="btn btn-warning btn-lg" (click)="createPoll()">Submit</button>
         </form>
       </div>
     </div>

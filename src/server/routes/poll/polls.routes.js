@@ -4,8 +4,10 @@ const router = require('express').Router(),
 
 // POST - creates new poll
 router.post('/', function (req, res) {
+  console.log(req.user);
+
   let poll = new Poll({
-    creator: req.body.creator,
+    creatorId: req.user._id,
     title: req.body.title,
     options: req.body.options
   });

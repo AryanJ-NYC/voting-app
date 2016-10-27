@@ -29,8 +29,9 @@ export class SignupModalComponent {
         .subscribe(
           user => {
             if (user.hasOwnProperty('_id')) {
-              this.user = user;
               this.onSubmitted.emit(user);
+              this.user = new User();
+              this.confirmPassword = '';
               this.signupModal.hide();
             }
           },
