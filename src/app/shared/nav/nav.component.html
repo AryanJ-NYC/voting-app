@@ -4,21 +4,21 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/polls">Voting App</a>
       <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed=!isCollapsed" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <p class="navbar-brand">Voting App</p>
     </div>
 
     <div *ngIf="!fetchingUserData" class="collapse navbar-collapse" [collapse]="isCollapsed" id="nav-items">
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!user"><a href="#" (click)="showLoginModal()">Login</a></li>
-        <li *ngIf="!user"><a href="#" (click)="showSignupModal()">Sign Up</a></li>
-        <li *ngIf="user" (click)="showCreatePollModal()"><a href="#">Create Poll</a></li>
-        <li *ngIf="user"><a href="#" (click)="logout()">Logout</a></li>
+        <li *ngIf="!user"><a (click)="showLoginModal()">Login</a></li>
+        <li *ngIf="!user"><a (click)="showSignupModal()">Sign Up</a></li>
+        <li *ngIf="user"><a (click)="showCreatePollModal()">Create Poll</a></li>
+        <li *ngIf="user"><a (click)="logout()">Logout</a></li>
       </ul>
     </div>
   </div><!-- /.container-fluid -->

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Poll } from '../shared/poll';
 import { PollService } from '../shared/poll.service';
@@ -12,11 +13,19 @@ import { PollService } from '../shared/poll.service';
 export class PollListComponent implements OnInit {
   private polls: Poll[];
 
-  constructor(private pollService: PollService) {
+  constructor(
+    private router: Router,
+    private pollService: PollService
+  ) {
     pollService.pollCreated$.subscribe(
       poll => {
         this.polls.push(poll);
       });
+  }
+
+  private goToPollDetail(poll: Poll): void {
+    let link = ['/polls', poll._id];
+    this.router.navigate(link);
   }
 
   ngOnInit() {

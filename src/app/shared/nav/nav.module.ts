@@ -4,14 +4,26 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ng2-bootstrap/components/modal';
 import { NgModule } from '@angular/core';
+import { RouterModule }   from '@angular/router';
 
-import { PollModule } from '../../polls/poll.module';
 import { LoginModalComponent } from './login-modal.component';
 import { NavComponent } from './nav.component';
+import { PollModule } from '../../polls/poll.module';
+import { PollListComponent } from '../../polls/poll-list/poll-list.component';
 import { SignupModalComponent } from './signup-modal.component';
 
 @NgModule({
-  imports: [ AlertModule, CollapseModule, CommonModule, FormsModule, ModalModule, PollModule],
+  imports: [
+    AlertModule,
+    CollapseModule,
+    CommonModule,
+    FormsModule,
+    ModalModule,
+    PollModule,
+    RouterModule.forRoot([
+      { path: 'polls', component: PollListComponent }
+    ])
+  ],
   declarations: [ LoginModalComponent, NavComponent, SignupModalComponent ],
   exports: [ NavComponent ]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from "../../users/shared/user";
 import { CreatePollComponent } from '../../polls/create-poll.component';
@@ -9,7 +10,8 @@ import { UserService } from '../../users/shared/user.service';
 @Component({
   moduleId: module.id,
   selector: 'navigation',
-  templateUrl: './nav.component.html'
+  templateUrl: './nav.component.html',
+  styleUrls: [ './nav.component.css' ]
 })
 
 export class NavComponent implements OnInit {
@@ -20,7 +22,10 @@ export class NavComponent implements OnInit {
   private user: User;
   private fetchingUserData = true;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.userService.getSession()

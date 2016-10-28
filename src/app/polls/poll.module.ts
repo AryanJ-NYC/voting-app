@@ -5,12 +5,13 @@ import { ModalModule } from 'ng2-bootstrap/components/modal';
 import { NgModule } from '@angular/core';
 
 import { CreatePollComponent } from './create-poll.component';
+import { PollDetailComponent } from './poll-detail/poll-detail.component';
 import { PollListComponent } from './poll-list/poll-list.component';
 
 @NgModule({
   imports: [ AlertModule, CommonModule, FormsModule, ModalModule ],
-  declarations: [ CreatePollComponent, PollListComponent ],
-  exports: [ CreatePollComponent, PollListComponent ]
+  declarations: [ CreatePollComponent, PollDetailComponent, PollListComponent ],
+  exports: [ CreatePollComponent, PollDetailComponent, PollListComponent ]
 })
 
 export class PollModule { }
