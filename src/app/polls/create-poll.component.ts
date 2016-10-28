@@ -7,7 +7,8 @@ import { PollService } from './shared/poll.service';
 @Component({
   moduleId: module.id,
   selector: 'create-poll',
-  templateUrl: './create-poll.component.html'
+  templateUrl: './create-poll.component.html',
+  styleUrls: [ './create-poll.component.css' ]
 })
 
 export class CreatePollComponent {
@@ -16,8 +17,11 @@ export class CreatePollComponent {
   @Input() poll: Poll = new Poll();
 
   constructor(private pollService: PollService) {
-    let newOption = { name: '' };
-    this.poll.options = [ newOption ];
+    this.poll.options = [ { name: '' }, { name: '' } ];
+  }
+
+  private addOption(): void {
+    this.poll.options.push({ name: '' });
   }
 
   private sharePoll(poll: Poll): void {
