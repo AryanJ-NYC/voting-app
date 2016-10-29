@@ -27,7 +27,7 @@ module.exports = function (passport) {
         if (err) return done(err, false);
         if (user) return done(null, false, { message: 'Email address already registered.' });
 
-        // if user is not found, create new user
+        // if user is not found, createPoll new user
         let newUser = new User({
           email: email,
           password: password

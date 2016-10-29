@@ -3,7 +3,7 @@ interface IOption {
 }
 
 export class Poll {
-  _id?: string;
+  _id: string;
   title: string;
   options: IOption[];
 }

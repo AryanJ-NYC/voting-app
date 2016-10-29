@@ -41,4 +41,10 @@ export class PollService {
         .map(res => res.json())
         .catch(err => Observable.throw(err.json()));
   }
+
+  getById(id: string): Observable<Poll> {
+    return this.http.get(`${this.pollsRoute}/${id}`)
+        .map(res => res.json())
+        .catch(err => Observable.throw(err.json()));
+  }
 }
