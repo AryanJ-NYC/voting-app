@@ -1,8 +1,8 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/components/modal';
 
-import { Poll } from './shared/poll';
-import { PollService } from './shared/poll.service';
+import { Poll } from '../shared/poll';
+import { PollService } from '../shared/poll.service';
 
 @Component({
   moduleId: module.id,

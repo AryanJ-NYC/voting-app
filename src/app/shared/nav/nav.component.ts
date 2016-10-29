@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from "../../users/shared/user";
-import { CreatePollComponent } from '../../polls/create-poll.component';
+import { CreatePollComponent } from '../../polls/create-poll/create-poll.component';
 import { LoginModalComponent } from './login-modal.component';
 import { SignupModalComponent } from './signup-modal.component';
 import { UserService } from '../../users/shared/user.service';
