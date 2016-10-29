@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from "../../users/shared/user";
 import { CreatePollComponent } from '../../polls/create-poll/create-poll.component';
 import { LoginModalComponent } from './login/login.component';
-import { SignupModalComponent } from './signup-modal.component';
+import { SignupModalComponent } from './signup/signup.component';
 import { UserService } from '../../users/shared/user.service';
 
 @Component({

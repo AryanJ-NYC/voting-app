@@ -10,7 +10,7 @@ import { LoginModalComponent } from './login/login.component';
 import { NavComponent } from './nav.component';
 import { PollModule } from '../../polls/poll.module';
 import { PollListComponent } from '../../polls/poll-list/poll-list.component';
-import { SignupModalComponent } from './signup-modal.component';
+import { SignupModalComponent } from './signup/signup.component';
 
 @NgModule({
   imports: [
