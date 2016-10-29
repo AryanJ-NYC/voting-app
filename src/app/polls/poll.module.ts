@@ -7,10 +7,11 @@ import { NgModule } from '@angular/core';
 import { CreatePollComponent } from './create-poll/create-poll.component';
 import { PollDetailComponent } from './poll-detail/poll-detail.component';
 import { PollListComponent } from './poll-list/poll-list.component';
+import { PollOptionsComponent } from './poll-options/poll-options.component';
 
 @NgModule({
   imports: [ AlertModule, CommonModule, FormsModule, ModalModule ],
-  declarations: [ CreatePollComponent, PollDetailComponent, PollListComponent ],
+  declarations: [ CreatePollComponent, PollDetailComponent, PollListComponent, PollOptionsComponent ],
   exports: [ CreatePollComponent, PollDetailComponent, PollListComponent ]
 })
 

@@ -1,0 +1,7 @@
+<div class="container-fluid">
+  <h1>{{ poll.title }}</h1>
+  <select class="form-control">
+    <option value="" disabled selected>Please select an option</option>
+    <option *ngFor="let option of poll.options" value="option.">{{ option.name }}</option>
+  </select>
+</div>
