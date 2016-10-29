@@ -28,11 +28,11 @@ export class PollListComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getPolls();
   }
 
-  getPolls() {
+  getPolls(): void {
     this.pollService.getAll()
       .subscribe(
         polls => {

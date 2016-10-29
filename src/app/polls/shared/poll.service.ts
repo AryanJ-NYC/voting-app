@@ -47,4 +47,13 @@ export class PollService {
         .map(res => res.json())
         .catch(err => Observable.throw(err.json()));
   }
+
+  addVote(pollId: string, optionId: string): Observable<string[]> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(`${this.pollsRoute}/${pollId}/options/${optionId}/vote`, null, options)
+        .map(res => res.json())
+        .catch(err => Observable.throw(err.json()));
+  }
 }

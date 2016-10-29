@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { Poll } from '../shared/poll.model';
+import { PollService } from '../shared/poll.service';
 
 @Component({
   moduleId: module.id,
@@ -11,8 +12,15 @@ import { Poll } from '../shared/poll.model';
 export class PollOptionsComponent {
   @Input() poll: Poll;
   @Input() optionId: string;
+  private votes: string[];
 
-  private vote(): void {
-    console.log(this.optionId);
+  constructor(private pollService: PollService) { }
+
+  vote(): void {
+    this.pollService.addVote(this.poll._id, this.optionId)
+        .subscribe(
+          votes => this.votes = votes,
+          error => console.error(error)
+        );
   }
 }
