@@ -11,6 +11,8 @@ import { PollService } from '../shared/poll.service';
 })
 
 export class PollDetailComponent implements OnInit {
+  private canVote: boolean;
+  private errorMessage: string;
   private poll: Poll = new Poll();
 
   constructor(
@@ -25,7 +27,18 @@ export class PollDetailComponent implements OnInit {
       this.pollService.getById(id)
           .subscribe(
             poll => this.poll = poll,
-            error => console.error(error)
+            error => console.error(error),
+            () => {
+              this.pollService.canVote(this.poll._id)
+                  .subscribe(
+                    canVote => {
+                      this.canVote = canVote;
+                      if (!this.canVote)
+                        this.errorMessage = "You already voted in this poll."
+                    },
+                    error => console.error(error)
+                  )
+            }
           )
     });
   }

@@ -10,6 +10,7 @@ import { PollService } from '../shared/poll.service';
 })
 
 export class PollOptionsComponent {
+  @Input() canVote: boolean;
   @Input() poll: Poll;
   @Input() optionId: string;
   private votes: string[];

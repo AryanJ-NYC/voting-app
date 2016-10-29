@@ -56,4 +56,10 @@ export class PollService {
         .map(res => res.json())
         .catch(err => Observable.throw(err.json()));
   }
+
+  canVote(pollId: string): Observable<boolean> {
+    return this.http.get(`${this.pollsRoute}/${pollId}/canVote`)
+        .map(res => res.json())
+        .catch(err => Observable.throw(err.json()));
+  }
 }

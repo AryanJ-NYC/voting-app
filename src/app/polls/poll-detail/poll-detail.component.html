@@ -1,1 +1,2 @@
-<poll-options class="col-md-5 col-xs-12" [poll]="poll"></poll-options>
+<alert *ngIf="errorMessage">{{ errorMessage }}</alert>
+<poll-options class="col-md-5 col-xs-12" [canVote]="canVote" [poll]="poll"></poll-options>

@@ -8,5 +8,5 @@
       </option>
     </select>
   </div>
-  <button type="button" class="btn btn-primary" (click)="vote()" [disabled]="!optionId">Submit</button>
+  <button type="button" class="btn btn-primary" (click)="vote()" [disabled]="!optionId || !canVote">Submit</button>
 </div>
