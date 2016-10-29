@@ -7,5 +7,7 @@ typings
 .env
 
 # include following files
+!**/routes.js
 !**/server.js
-!src/server/routes/**
+!src/server/**/*.handlers.js
+!src/server/**/*.routes.js
