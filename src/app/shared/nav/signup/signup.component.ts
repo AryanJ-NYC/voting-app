@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/components/modal';
 
-import { User } from '../../../users/shared/user';
+import { User } from '../../../users/shared/user.model';
 import { UserService } from '../../../users/shared/user.service';
 
 @Component({

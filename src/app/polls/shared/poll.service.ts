@@ -3,7 +3,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { Poll } from './poll';
+import { Poll } from './poll.model';
 
 @Injectable()
 export class PollService {

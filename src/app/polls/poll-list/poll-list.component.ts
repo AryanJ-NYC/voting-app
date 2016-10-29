@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Poll } from '../shared/poll';
+import { Poll } from '../shared/poll.model';
 import { PollService } from '../shared/poll.service';
 
 @Component({
