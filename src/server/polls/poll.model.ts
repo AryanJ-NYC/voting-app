@@ -3,7 +3,7 @@ import mongoose = require('mongoose');
 
 interface IOption {
   name: string;
-  votes: string; // either IP address or ObjectId of user
+  votes: Array<string>; // IP address
 }
 
 interface IPoll extends mongoose.Document {
@@ -18,7 +18,7 @@ let pollSchema = new mongoose.Schema({
   title: { type: String, required: true },
   options: { type: [{
     name: { type: String, required: true },
-    votes: [ String ] // either IP address or ObjectId of user
+    votes: [ String ] // IP address
   }], required: true }
 }, { timestamps: true });
 

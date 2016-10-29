@@ -1,7 +1,12 @@
 <div class="container-fluid">
   <h1>{{ poll.title }}</h1>
-  <select class="form-control">
-    <option value="" disabled selected>Please select an option</option>
-    <option *ngFor="let option of poll.options" value="option.">{{ option.name }}</option>
-  </select>
+  <div class="form-group">
+    <select class="form-control" [(ngModel)]="optionId">
+      <option value="" disabled selected>Please select an option</option>
+      <option *ngFor="let option of poll.options" value="{{option._id}}">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="vote()" [disabled]="!optionId">Submit</button>
 </div>

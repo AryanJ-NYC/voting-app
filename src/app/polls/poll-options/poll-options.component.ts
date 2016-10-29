@@ -10,4 +10,9 @@ import { Poll } from '../shared/poll.model';
 
 export class PollOptionsComponent {
   @Input() poll: Poll;
+  @Input() optionId: string;
+
+  private vote(): void {
+    console.log(this.optionId);
+  }
 }
