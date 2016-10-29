@@ -6,7 +6,7 @@ import { ModalModule } from 'ng2-bootstrap/components/modal';
 import { NgModule } from '@angular/core';
 import { RouterModule }   from '@angular/router';
 
-import { LoginModalComponent } from './login-modal.component';
+import { LoginModalComponent } from './login/login.component';
 import { NavComponent } from './nav.component';
 import { PollModule } from '../../polls/poll.module';
 import { PollListComponent } from '../../polls/poll-list/poll-list.component';
