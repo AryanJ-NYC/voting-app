@@ -38,7 +38,7 @@ module.exports.addVote = function (req, res) {
     votes.push(ipAddress);
     req.poll.save(function (err) {
       if (err) return res.status(503).json({ 'message': err.message });
-      res.json(votes);
+      res.json(req.poll);
     });
   } else {
     return res.status(409).json({ 'message': 'Already voted at that IP.' })
