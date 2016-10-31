@@ -26,7 +26,10 @@ export class PollDetailComponent implements OnInit {
 
       this.pollService.getById(id)
           .subscribe(
-            poll => this.poll = poll,
+            poll => {
+              this.poll = poll;
+              this.sharePoll(this.poll);
+            },
             error => console.error(error),
             () => {
               this.pollService.canVote(this.poll._id)
@@ -41,5 +44,9 @@ export class PollDetailComponent implements OnInit {
             }
           )
     });
+  }
+
+  private sharePoll(poll: Poll): void {
+    this.pollService.broadcastPoll(poll);
   }
 }

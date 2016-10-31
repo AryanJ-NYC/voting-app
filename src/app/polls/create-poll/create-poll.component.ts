@@ -42,6 +42,8 @@ export class CreatePollComponent {
   }
 
   showModal(): void {
+    this.poll = new Poll();
+    this.poll.options = [ { name: '' }, { name: '' } ];
     this.createPollModal.show();
   }
 

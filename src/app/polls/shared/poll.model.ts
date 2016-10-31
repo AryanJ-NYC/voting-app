@@ -1,5 +1,7 @@
 interface IOption {
   name: string;
+  _id?: string;
+  votes?: string[];
 }
 
 export class Poll {

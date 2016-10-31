@@ -48,7 +48,7 @@ export class PollService {
         .catch(err => Observable.throw(err.json()));
   }
 
-  addVote(pollId: string, optionId: string): Observable<string[]> {
+  addVote(pollId: string, optionId: string): Observable<Poll> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
 
