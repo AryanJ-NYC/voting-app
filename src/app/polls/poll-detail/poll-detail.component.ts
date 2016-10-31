@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Poll } from '../shared/poll.model';
 import { PollService } from '../shared/poll.service';
@@ -17,7 +18,8 @@ export class PollDetailComponent implements OnInit {
 
   constructor(
     private pollService: PollService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastsManager
   ) { }
 
   ngOnInit(): void {
@@ -48,5 +50,11 @@ export class PollDetailComponent implements OnInit {
 
   private sharePoll(poll: Poll): void {
     this.pollService.broadcastPoll(poll);
+  }
+
+  private showSuccessToast(isVoteSuccess: boolean): void {
+    if (isVoteSuccess) {
+      this.toastr.success('Vote Submitted', 'Success!');
+    }
   }
 }

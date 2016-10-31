@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { User } from "../../users/shared/user.model";
 import { CreatePollComponent } from '../../polls/create-poll/create-poll.component';
@@ -22,10 +21,7 @@ export class NavComponent implements OnInit {
   private user: User;
   private fetchingUserData = true;
 
-  constructor(
-    private router: Router,
-    private userService: UserService
-  ) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getSession()

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Poll } from '../shared/poll.model';
 import { PollService } from '../shared/poll.service';
@@ -13,6 +13,7 @@ export class PollOptionsComponent {
   @Input() canVote: boolean;
   @Input() poll: Poll;
   @Input() optionId: string;
+  @Output() onVoted = new EventEmitter<boolean>();
 
   constructor(private pollService: PollService) { }
 
@@ -22,6 +23,7 @@ export class PollOptionsComponent {
           poll => {
             this.poll = poll;
             this.sharePoll(this.poll);
+            this.onVoted.emit(true);
             this.canVote = false;
           },
             error => console.error(error)
