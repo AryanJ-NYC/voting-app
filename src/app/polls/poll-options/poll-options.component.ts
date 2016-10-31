@@ -15,7 +15,9 @@ export class PollOptionsComponent {
   @Input() optionId: string;
   @Output() onVoted = new EventEmitter<boolean>();
 
-  constructor(private pollService: PollService) { }
+  constructor(private pollService: PollService) {
+    this.canVote = true;
+  }
 
   vote(): void {
     this.pollService.addVote(this.poll._id, this.optionId)

@@ -15,7 +15,7 @@ module.exports.createPoll = function (req, res) {
       res.json(poll);
     });
   } else {
-    res.status(401).json({ 'message': 'Please log in to createPoll a new poll. '});
+    res.status(401).json({ 'message': 'Please log in to create a new poll. '});
   }
 };
 

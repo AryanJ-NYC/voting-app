@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/components/modal';
+import { Router } from '@angular/router';
 
 import { Poll } from '../shared/poll.model';
 import { PollService } from '../shared/poll.service';
@@ -16,7 +17,10 @@ export class CreatePollComponent {
   private errorMessage: string;
   @Input() poll: Poll = new Poll();
 
-  constructor(private pollService: PollService) {
+  constructor(
+      private pollService: PollService,
+      private router: Router
+  ) {
     this.poll.options = [ { name: '' }, { name: '' } ];
   }
 
@@ -35,6 +39,7 @@ export class CreatePollComponent {
             this.poll = poll;
             this.sharePoll(this.poll);
             this.createPollModal.hide();
+            this.router.navigate([ `/polls/${this.poll._id}` ]);
           }
         }, error => {
           this.errorMessage = error.message;
