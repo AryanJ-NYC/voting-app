@@ -20,7 +20,7 @@ import { SignupModalComponent } from './signup/signup.component';
     FormsModule,
     ModalModule,
     PollModule,
-    RouterModule.forRoot([
+    RouterModule.forChild([
       { path: 'polls', component: PollListComponent }
     ])
   ],

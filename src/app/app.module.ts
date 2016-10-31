@@ -7,6 +7,7 @@ import './rxjs-operators';
 import { AppComponent }  from './app.component';
 import { PollDetailComponent } from './polls/poll-detail/poll-detail.component';
 import { NavModule } from './shared/nav/nav.module';
+import { PollListComponent } from './polls/poll-list/poll-list.component';
 import { PollModule } from './polls/poll.module';
 import { PollService } from './polls/shared/poll.service';
 import { UserService } from './users/shared/user.service';
@@ -18,8 +19,9 @@ import { UserService } from './users/shared/user.service';
     NavModule,
     PollModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: '/polls', pathMatch: 'full' },
       { path: 'polls/:id', component: PollDetailComponent },
+      { path: 'polls', component: PollListComponent },
+      { path: '', redirectTo: '/polls', pathMatch: 'full' },
     ])
   ],
   declarations: [ AppComponent ],
