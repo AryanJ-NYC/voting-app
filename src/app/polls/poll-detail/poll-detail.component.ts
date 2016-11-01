@@ -54,7 +54,7 @@ export class PollDetailComponent implements OnInit {
 
   private showSuccessToast(isVoteSuccess: boolean): void {
     if (isVoteSuccess) {
-      this.toastr.success('Vote Submitted', 'Success!');
+      this.toastr.success('Vote Submitted', 'Success!', { dismiss: 'auto', showCloseButton: true });
     }
   }
 }
