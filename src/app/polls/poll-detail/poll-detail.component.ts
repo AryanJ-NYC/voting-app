@@ -50,7 +50,7 @@ export class PollDetailComponent implements OnInit {
 
   private displayVoteSuccess(isVoteSuccess: boolean): void {
     if (isVoteSuccess) {
-      this.toastr.success('Vote Submitted', 'Success!', { dismiss: 'auto', showCloseButton: true });
+      this.toastr.success('Vote Submitted', 'Success!', { dismiss: 'auto', toastLife: 1000, showCloseButton: true });
       this.errorMessage = 'You have already voted for this poll.';
     }
   }

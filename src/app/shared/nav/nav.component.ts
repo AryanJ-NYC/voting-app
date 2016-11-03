@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { User } from "../../users/shared/user.model";
 import { CreatePollComponent } from '../../polls/create-poll/create-poll.component';
@@ -21,7 +22,10 @@ export class NavComponent implements OnInit {
   private user: User;
   private fetchingUserData = true;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private toastr: ToastsManager,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.userService.getSession()
@@ -59,6 +63,7 @@ export class NavComponent implements OnInit {
     this.userService.destroySession().subscribe(
       () => {
         this.user = null;
+        this.toastr.success('Logged Out', 'Success!', { dismiss: 'auto', toastLife: 1000, showCloseButton: true });
       });
   }
 }
