@@ -15,7 +15,6 @@ export class PollDetailResolve implements Resolve<Poll> {
     return this.pollService.getById(id)
       .map(poll => {
         if (poll) {
-          this.pollService.broadcastPoll(poll);
           return poll;
         } else {
           console.log("NOT FOUND!"); // TODO reroute

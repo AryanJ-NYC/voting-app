@@ -14,7 +14,7 @@ import { PollService } from '../shared/poll.service';
 export class PollDetailComponent implements OnInit {
   private canVote: boolean;
   private errorMessage: string;
-  private poll: Poll = new Poll();
+  private poll: Poll;
 
   constructor(
     private pollService: PollService,
@@ -26,6 +26,21 @@ export class PollDetailComponent implements OnInit {
     this.route.data.forEach((data: { poll: Poll }) => {
       this.poll = data.poll;
       this.sharePoll(this.poll);
+
+      this.pollService.canVote(this.poll._id)
+          .subscribe(
+            canVote => {
+              this.canVote = canVote;
+
+              if (this.canVote) {
+                this.errorMessage = '';
+              } else {
+                this.errorMessage = 'You have already voted for this poll.';
+              }
+            },
+            err => {
+              console.error(err);
+            });
     });
   }
 
@@ -33,9 +48,10 @@ export class PollDetailComponent implements OnInit {
     this.pollService.broadcastPoll(poll);
   }
 
-  private showSuccessToast(isVoteSuccess: boolean): void {
+  private displayVoteSuccess(isVoteSuccess: boolean): void {
     if (isVoteSuccess) {
       this.toastr.success('Vote Submitted', 'Success!', { dismiss: 'auto', showCloseButton: true });
+      this.errorMessage = 'You have already voted for this poll.';
     }
   }
 }
