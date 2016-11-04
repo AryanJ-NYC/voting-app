@@ -23,24 +23,17 @@ export class PollDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.data.forEach((data: { poll: Poll }) => {
-      this.poll = data.poll;
+    this.route.data.forEach((element: {data: Array<any>}) => {
+      this.poll = element.data[0];
       this.sharePoll(this.poll);
 
-      this.pollService.canVote(this.poll._id)
-          .subscribe(
-            canVote => {
-              this.canVote = canVote;
+      this.canVote = element.data[1];
 
-              if (this.canVote) {
-                this.errorMessage = '';
-              } else {
-                this.errorMessage = 'You have already voted for this poll.';
-              }
-            },
-            err => {
-              console.error(err);
-            });
+      if (this.canVote) {
+        this.errorMessage = '';
+      } else {
+        this.errorMessage = 'You have already voted for this poll.';
+      }
     });
   }
 

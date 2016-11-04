@@ -20,7 +20,7 @@ import { UserService } from './users/shared/user.service';
     NavModule,
     PollModule,
     RouterModule.forRoot([
-      { path: 'polls/:id', component: PollDetailComponent, resolve: { poll: PollDetailResolve }},
+      { path: 'polls/:id', component: PollDetailComponent, resolve: { data: PollDetailResolve }},
       { path: 'polls', component: PollListComponent },
       { path: '', redirectTo: '/polls', pathMatch: 'full' },
     ])
