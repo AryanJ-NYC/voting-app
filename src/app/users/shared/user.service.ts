@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import { User } from './user.model';
 
 @Injectable()
 export class UserService {
+  // Observable string sources
+  private userLoggedInSource = new Subject<User>();
+
+  // Observable string streams
+  userLoggedIn$ = this.userLoggedInSource.asObservable();
+
   private apiRoot: string;
   private usersRoute: string;
   private sessionsRoute: string;
@@ -14,6 +21,10 @@ export class UserService {
     this.apiRoot = '/api';
     this.usersRoute = this.apiRoot + '/users';
     this.sessionsRoute = this.apiRoot + '/sessions';
+  }
+
+  broadcastUser(user: User): void {
+    this.userLoggedInSource.next(user);
   }
 
   login(user: User): Observable<User> {
@@ -39,7 +50,7 @@ export class UserService {
   getSession(): Observable<User> {
     return this.http.get(this.sessionsRoute)
                .map(res => res.json())
-               .catch(err => Observable.throw(err.json()));
+               .catch(err => Observable.throw(err.message));
   }
 
   destroySession(): Observable<void> {

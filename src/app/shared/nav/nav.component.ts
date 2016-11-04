@@ -33,10 +33,11 @@ export class NavComponent implements OnInit {
         user => {
           if (user.hasOwnProperty('_id')) {
             this.user = user;
+            this.userService.broadcastUser(this.user);
           }
           this.fetchingUserData = false;
         },
-        error => {
+        () => {
           this.user = null;
           this.fetchingUserData = false;
         }
@@ -63,6 +64,7 @@ export class NavComponent implements OnInit {
     this.userService.destroySession().subscribe(
       () => {
         this.user = null;
+        this.userService.broadcastUser(this.user);
         this.toastr.success('Logged Out', 'Success!', { dismiss: 'auto', toastLife: 1000, showCloseButton: true });
       });
   }

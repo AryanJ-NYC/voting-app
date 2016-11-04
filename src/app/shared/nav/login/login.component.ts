@@ -18,7 +18,11 @@ export class LoginModalComponent {
 
   constructor (private userService: UserService) { }
 
-  clearErrorMessage(): void {
+  private shareUser(user: User): void {
+    this.userService.broadcastUser(user);
+  }
+
+  private clearErrorMessage(): void {
     this.errorMessage = '';
   }
 
@@ -27,6 +31,7 @@ export class LoginModalComponent {
         .subscribe(
             user => {
               if (user.hasOwnProperty('_id')) {
+                this.shareUser(user);
                 this.onSubmitted.emit(user);
                 this.user = new User();
                 this.loginModal.hide();

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
+import { ActivatedRoute }   from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Poll } from '../shared/poll.model';
 import { PollService } from '../shared/poll.service';
+import { User } from "../../users/shared/user.model";
+import { UserService } from '../../users/shared/user.service';
 
 @Component({
   moduleId: module.id,
@@ -15,12 +17,16 @@ export class PollDetailComponent implements OnInit {
   private canVote: boolean;
   private errorMessage: string;
   private poll: Poll;
+  private user: User;
 
   constructor(
     private pollService: PollService,
     private route: ActivatedRoute,
-    private toastr: ToastsManager
-  ) { }
+    private toastr: ToastsManager,
+    private userService: UserService
+  ) {
+    userService.userLoggedIn$.subscribe(user => { this.user = user; })
+  }
 
   ngOnInit(): void {
     this.route.data.forEach((element: {data: Array<any>}) => {
@@ -34,6 +40,8 @@ export class PollDetailComponent implements OnInit {
       } else {
         this.errorMessage = 'You have already voted for this poll.';
       }
+
+      this.user = element.data[2];
     });
   }
 
