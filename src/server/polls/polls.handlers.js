@@ -11,7 +11,7 @@ module.exports.createPoll = function (req, res) {
     });
 
     poll.save(function (err) {
-      if (err) return res.status(503).json({ 'message': err.message });
+      if (err) return res.status(err.statusCode).json({ 'message': err.message });
       res.json(poll);
     });
   } else {
@@ -30,6 +30,13 @@ module.exports.getById = function (req, res) {
   res.json(req.poll);
 };
 
+module.exports.deleteById = function (req, res) {
+  req.poll.remove(function (err) {
+    if (err) return res.status(err.statusCode).json({ 'message': err.message });
+    res.status(200).end();
+  });
+};
+
 module.exports.addVote = function (req, res) {
   let ipAddress = req.headers['x-forwarded-for'] || req.ip;
 
@@ -37,7 +44,7 @@ module.exports.addVote = function (req, res) {
     let votes = req.option.votes;
     votes.push(ipAddress);
     req.poll.save(function (err) {
-      if (err) return res.status(503).json({ 'message': err.message });
+      if (err) return res.status(err.statusCode).json({ 'message': err.message });
       res.json(req.poll);
     });
   } else {

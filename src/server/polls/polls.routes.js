@@ -42,8 +42,11 @@ router.route('/')
 .get(pollHandlers.getAll);
 
 router.route('/:pollId')
-// GET post with matching database ID
-.get(canVote, pollHandlers.getById);
+// GET post with matching object ID
+.get(canVote, pollHandlers.getById)
+
+// DELETE post with matching object ID
+.delete(pollHandlers.deleteById);
 
 router.route('/:pollId/canVote')
 .get(canVote, function (req, res) {
