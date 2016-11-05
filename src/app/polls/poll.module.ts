@@ -11,10 +11,11 @@ import { PollChartComponent } from './poll-chart/poll-chart.component';
 import { PollDetailComponent } from './poll-detail/poll-detail.component';
 import { PollListComponent } from './poll-list/poll-list.component';
 import { PollOptionsComponent } from './poll-options/poll-options.component';
+import { UserPollListComponent } from "./user-poll-list/user-poll-list.component";
 
 @NgModule({
   imports: [ AlertModule, CommonModule, ChartsModule, FormsModule, ModalModule, ToastModule ],
-  declarations: [ CreatePollComponent, PollChartComponent, PollDetailComponent, PollListComponent, PollOptionsComponent ],
+  declarations: [ CreatePollComponent, PollChartComponent, PollDetailComponent, PollListComponent, PollOptionsComponent, UserPollListComponent ],
   exports: [ CreatePollComponent, PollDetailComponent, PollListComponent ]
 })
 
