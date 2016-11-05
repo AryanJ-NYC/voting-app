@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router }   from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -20,6 +21,7 @@ export class PollDetailComponent implements OnInit {
   private user: User;
 
   constructor(
+    private location: Location,
     private pollService: PollService,
     private route: ActivatedRoute,
     private router: Router,
