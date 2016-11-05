@@ -16,10 +16,12 @@ export class PollService {
 
   private apiRoot: string;
   private pollsRoute: string;
+  private usersRoute: string;
 
   constructor(private http: Http) {
     this.apiRoot = '/api';
     this.pollsRoute = this.apiRoot + '/polls';
+    this.usersRoute = this.apiRoot + '/users'
   }
 
   broadcastPoll(poll: Poll): void {
@@ -44,6 +46,12 @@ export class PollService {
 
   getById(id: string): Observable<Poll> {
     return this.http.get(`${this.pollsRoute}/${id}`)
+        .map(res => res.json())
+        .catch(err => Observable.throw(err.json()));
+  }
+
+  getPollsByUserID(userId: string): Observable<Poll[]> {
+    return this.http.get(`${this.usersRoute}/${userId}/polls`)
         .map(res => res.json())
         .catch(err => Observable.throw(err.json()));
   }

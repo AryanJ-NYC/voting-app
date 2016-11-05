@@ -12,6 +12,7 @@ import { PollListComponent } from './polls/poll-list/poll-list.component';
 import { PollModule } from './polls/poll.module';
 import { PollService } from './polls/shared/poll.service';
 import { UserService } from './users/shared/user.service';
+import { UserPollListResolve } from './polls/user-poll-list/user-poll-list-resolve.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { UserService } from './users/shared/user.service';
   ],
   declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ],
-  providers:    [ PollDetailResolve, PollService, UserService ]
+  providers:    [ PollDetailResolve, UserPollListResolve, PollService, UserService ]
 })
 
 export class AppModule { }

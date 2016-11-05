@@ -11,7 +11,8 @@ import { NavComponent } from './nav.component';
 import { PollModule } from '../../polls/poll.module';
 import { PollListComponent } from '../../polls/poll-list/poll-list.component';
 import { SignupModalComponent } from './signup/signup.component';
-import { UserPollListComponent } from "../../polls/user-poll-list/user-poll-list.component";
+import { UserPollListComponent } from '../../polls/user-poll-list/user-poll-list.component';
+import { UserPollListResolve } from '../../polls/user-poll-list/user-poll-list-resolve.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { UserPollListComponent } from "../../polls/user-poll-list/user-poll-list
     PollModule,
     RouterModule.forChild([
       { path: 'polls', component: PollListComponent },
-      { path: 'my-polls', component: UserPollListComponent }
+      { path: 'my-polls', component: UserPollListComponent, resolve: { user: UserPollListResolve } }
     ])
   ],
   declarations: [ LoginModalComponent, NavComponent, SignupModalComponent ],
