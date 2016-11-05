@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute }   from '@angular/router';
+import { ActivatedRoute, Router }   from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Poll } from '../shared/poll.model';
@@ -22,6 +22,7 @@ export class PollDetailComponent implements OnInit {
   constructor(
     private pollService: PollService,
     private route: ActivatedRoute,
+    private router: Router,
     private toastr: ToastsManager,
     private userService: UserService
   ) {
@@ -45,13 +46,25 @@ export class PollDetailComponent implements OnInit {
     });
   }
 
+  private deletePoll(): void {
+    if (confirm('Are you sure?')) {
+      this.pollService.deleteById(this.poll._id)
+          .subscribe(res => {
+            if (res.ok) {
+              this.toastr.success('Poll deleted', 'Success!', {toastLife: 1000, showCloseButton: true});
+              this.router.navigate(['/polls']);
+            }
+          });
+    }
+  }
+
   private sharePoll(poll: Poll): void {
     this.pollService.broadcastPoll(poll);
   }
 
   private displayVoteSuccess(isVoteSuccess: boolean): void {
     if (isVoteSuccess) {
-      this.toastr.success('Vote Submitted', 'Success!', { dismiss: 'auto', toastLife: 1000, showCloseButton: true });
+      this.toastr.success('Vote Submitted', 'Success!', { toastLife: 1000, showCloseButton: true });
       this.errorMessage = 'You have already voted for this poll.';
     }
   }

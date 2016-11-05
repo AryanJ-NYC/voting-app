@@ -2,5 +2,5 @@
   <alert *ngIf="errorMessage">{{ errorMessage }}</alert>
   <poll-options class="col-md-5 col-xs-12" [canVote]="canVote" [poll]="poll" (onVoted)="displayVoteSuccess($event)"></poll-options>
   <poll-chart class="col-md-7 col-xs-12" [poll]="poll"></poll-chart>
-  <button *ngIf="user._id" class="btn btn-danger">Delete Poll</button>
+  <button *ngIf="user._id == poll.creatorId" (click)="deletePoll()" class="btn btn-danger">Delete Poll</button>
 </div>

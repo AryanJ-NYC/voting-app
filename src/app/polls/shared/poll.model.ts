@@ -7,5 +7,6 @@ interface IOption {
 export class Poll {
   _id: string;
   title: string;
+  creatorId: string;
   options: IOption[];
 }

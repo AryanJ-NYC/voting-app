@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
@@ -46,6 +46,11 @@ export class PollService {
     return this.http.get(`${this.pollsRoute}/${id}`)
         .map(res => res.json())
         .catch(err => Observable.throw(err.json()));
+  }
+
+  deleteById(id: string): Observable<Response> {
+    return this.http.delete(`${this.pollsRoute}/${id}`)
+        .map(res => res);
   }
 
   addVote(pollId: string, optionId: string): Observable<Poll> {
