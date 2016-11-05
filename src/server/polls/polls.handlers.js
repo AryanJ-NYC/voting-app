@@ -31,10 +31,14 @@ module.exports.getById = function (req, res) {
 };
 
 module.exports.deleteById = function (req, res) {
-  req.poll.remove(function (err) {
-    if (err) return res.status(err.statusCode).json({ 'message': err.message });
-    res.status(200).end();
-  });
+  if (req.user && req.user.id == req.poll.creatorId) {
+    req.poll.remove(function (err) {
+      if (err) return res.status(err.statusCode).json({'message': err.message});
+      res.status(200).end();
+    });
+  } else {
+    res.status(401).json({ 'message': 'You must be the creator of the poll to delete.' })
+  }
 };
 
 module.exports.addVote = function (req, res) {
