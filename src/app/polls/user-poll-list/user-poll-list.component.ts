@@ -26,9 +26,9 @@ export class UserPollListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.data.forEach((data: Array<Poll>) => {
-      this.polls = data.data.polls;
-      this.user = data.data.user;
+    this.route.data.forEach((element: {data: {polls: Array<Poll>, user: User }}) => {
+      this.polls = element.data.polls;
+      this.user = element.data.user;
     });
   }
 
