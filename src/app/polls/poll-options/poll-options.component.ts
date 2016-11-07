@@ -14,22 +14,46 @@ export class PollOptionsComponent {
   @Input() poll: Poll;
   @Input() optionId: string;
   @Output() onVoted = new EventEmitter<boolean>();
+  private newOptionName: string;
 
   constructor(private pollService: PollService) {
     this.canVote = true;
   }
 
-  vote(): void {
-    this.pollService.addVote(this.poll._id, this.optionId)
-        .subscribe(
-          poll => {
+  private isNewOptionName(): boolean {
+    if (this.newOptionName && this.newOptionName.length > 0) return true;
+    return null;
+  }
+
+  private isOptionSelected(): boolean {
+    if (this.optionId && this.optionId.length > 0) return true;
+    return null;
+  }
+
+  private vote(): void {
+    let addVoteObserver = (poll: Poll) => {
             this.poll = poll;
             this.sharePoll(this.poll);
             this.onVoted.emit(true);
             this.canVote = false;
-          },
-            error => console.error(error)
-        );
+          };
+    let addOptionObservable = this.pollService.addOption(this.poll._id, { name: this.newOptionName });
+
+    // add new option then vote if new option filled
+    if (this.newOptionName) {
+      addOptionObservable.subscribe(
+            option => {
+              this.optionId = option._id;
+              this.newOptionName = null;
+            },
+            err => console.error(err),
+            () => {
+              this.pollService.addVote(this.poll._id, this.optionId).subscribe(addVoteObserver)
+            }
+          );
+    } else {
+      this.pollService.addVote(this.poll._id, this.optionId).subscribe(addVoteObserver)
+    }
   }
 
   private sharePoll(poll: Poll): void {

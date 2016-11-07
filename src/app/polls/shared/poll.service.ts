@@ -3,7 +3,7 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { Poll } from './poll.model';
+import { Option, Poll } from './poll.model';
 
 @Injectable()
 export class PollService {
@@ -59,6 +59,16 @@ export class PollService {
   deleteById(id: string): Observable<Response> {
     return this.http.delete(`${this.pollsRoute}/${id}`)
         .map(res => res);
+  }
+
+  addOption(pollId: string, option: Option): Observable<Option> {
+    let body = JSON.stringify(option);
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(`${this.pollsRoute}/${pollId}/options`, body, options)
+        .map(res => res.json())
+        .catch(err => Observable.throw(err.json()));
   }
 
   addVote(pollId: string, optionId: string): Observable<Poll> {

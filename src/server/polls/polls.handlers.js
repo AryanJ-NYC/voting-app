@@ -42,10 +42,11 @@ module.exports.deleteById = function (req, res) {
 };
 
 module.exports.addOption = function (req, res) {
-  req.poll.options.push({ name: req.body.optionName });
+  req.poll.options.push(req.body);
   req.poll.save(function (err) {
     if (err) return res.status(err.statusCode).json({ 'message': err.message });
-    res.json(req.poll);
+    let newOption = req.poll.options[req.poll.options.length - 1];
+    res.json(newOption);
   })
 };
 
