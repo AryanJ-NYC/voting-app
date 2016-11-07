@@ -5,6 +5,7 @@ import { RouterModule }   from '@angular/router';
 import './rxjs-operators';
 
 import { AppComponent }  from './app.component';
+import { FooterComponent } from './shared/footer/footer.component';
 import { NavModule } from './shared/nav/nav.module';
 import { PollDetailComponent } from './polls/poll-detail/poll-detail.component';
 import { PollDetailResolve } from './polls/poll-detail/poll-detail-resolve.service';
@@ -26,7 +27,7 @@ import { UserPollListResolve } from './polls/user-poll-list/user-poll-list-resol
       { path: '', redirectTo: '/polls', pathMatch: 'full' },
     ])
   ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, FooterComponent ],
   bootstrap:    [ AppComponent ],
   providers:    [ PollDetailResolve, UserPollListResolve, PollService, UserService ]
 })

@@ -1,10 +1,12 @@
-<div class="row">
-  <div *ngFor="let poll of polls" class="col-xs-12 col-md-4">
-    <button type="button" *ngIf="user && user._id == poll.creatorId" class="close" (click)="deletePoll(poll)" aria-label="close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <h4 class="text-center">{{ poll.title }}</h4>
-    <poll-chart class="col-xs-12" [poll]="poll" routerLink="/polls/{{poll._id}}"></poll-chart>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let poll of polls" class="col-xs-12 col-md-4">
+      <button type="button" *ngIf="user && user._id == poll.creatorId" class="close" (click)="deletePoll(poll)" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="text-center">{{ poll.title }}</h4>
+      <poll-chart class="col-xs-12" [poll]="poll" routerLink="/polls/{{poll._id}}"></poll-chart>
+    </div>
   </div>
+  <button class="btn btn-primary" (click)="location.back()">Back</button>
 </div>
-<button class="btn btn-primary" (click)="location.back()">Back</button>

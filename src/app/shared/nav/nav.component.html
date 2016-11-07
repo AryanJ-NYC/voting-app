@@ -2,7 +2,7 @@
 <signup-modal (onSubmitted)="changeUser($event)"></signup-modal>
 <create-poll></create-poll>
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" routerLink="/polls">Voting App</a>
       <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed=!isCollapsed" aria-expanded="false">
@@ -22,5 +22,5 @@
         <li *ngIf="user"><a (click)="logout()">Logout</a></li>
       </ul>
     </div>
-  </div><!-- /.container-fluid -->
+  </div><!-- /.container -->
 </nav>

@@ -3,7 +3,8 @@ import { Component, ViewContainerRef } from '@angular/core';
 @Component({
     selector: 'my-app',
     template: `<navigation></navigation>
-               <router-outlet></router-outlet>`
+               <router-outlet></router-outlet>
+               <foot></foot>`
 })
 
 export class AppComponent {
