@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }   from '@angular/router';
 
@@ -8,7 +9,8 @@ import { PollService } from '../shared/poll.service';
 @Component({
   moduleId: module.id,
   selector: 'user-poll-list',
-  templateUrl: './user-poll-list.component.html'
+  templateUrl: './user-poll-list.component.html',
+  styleUrls: [ './user-poll-list.component.css' ]
 })
 
 export class UserPollListComponent implements OnInit {
@@ -16,6 +18,7 @@ export class UserPollListComponent implements OnInit {
   private polls: Poll[];
 
   constructor(
+    private location: Location,
     private route: ActivatedRoute,
     private pollService: PollService
   ) { }
