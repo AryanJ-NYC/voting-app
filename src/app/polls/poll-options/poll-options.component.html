@@ -1,11 +1,15 @@
 <h1>{{ poll.title }}</h1>
-<div class="form-group">
-  <select class="form-control" [(ngModel)]="optionId" [disabled]="isNewOptionName()">
-    <option value="" selected>Please select an option</option>
-    <option *ngFor="let option of poll.options" value="{{option._id}}">
-      {{ option.name }}
-    </option>
-  </select>
-  <label>New Option: <input type="text" [(ngModel)]="newOptionName" [disabled]="isOptionSelected()" /></label>
-</div>
-<button type="button" class="btn btn-primary" (click)="vote()" [disabled]="!canVote || (!optionId && !newOptionName)">Submit</button>
+<form>
+  <div class="form-group">
+    <select class="form-control" [(ngModel)]="optionId" name="optionId" [disabled]="isNewOptionName()">
+      <option value="" selected>Please select an option</option>
+      <option *ngFor="let option of poll.options" value="{{option._id}}">
+        {{ option.name }}
+      </option>
+    </select>
+    <div class="form-group">
+      <label>New Option: <input type="text" class="form-control" [(ngModel)]="newOptionName" name="newOptionName" [disabled]="isOptionSelected()" /></label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="vote()" [disabled]="!canVote || (!optionId && !newOptionName)">Submit</button>
+</form>
