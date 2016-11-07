@@ -24,7 +24,7 @@ import { UserPollListResolve } from '../../polls/user-poll-list/user-poll-list-r
     PollModule,
     RouterModule.forChild([
       { path: 'polls', component: PollListComponent },
-      { path: 'my-polls', component: UserPollListComponent, resolve: { user: UserPollListResolve } }
+      { path: 'my-polls', component: UserPollListComponent, resolve: { data: UserPollListResolve } }
     ])
   ],
   declarations: [ LoginModalComponent, NavComponent, SignupModalComponent ],

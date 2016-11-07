@@ -26,14 +26,10 @@ export class UserPollListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.data.forEach((data: { user: User }) => {
-      this.user = data.user;
+    this.route.data.forEach((data: Array<Poll>) => {
+      this.polls = data.data.polls;
+      this.user = data.data.user;
     });
-
-    this.pollService.getPollsByUserID(this.user._id)
-        .subscribe(polls => {
-          this.polls = polls;
-        });
   }
 
   private deletePoll(poll: Poll) {
