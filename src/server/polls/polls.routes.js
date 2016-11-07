@@ -53,6 +53,10 @@ router.route('/:pollId/canVote')
   res.json(req.canVote);
 });
 
+router.route('/:pollId/options')
+// POST a new poll option
+.post(pollHandlers.addOption);
+
 router.route('/:pollId/options/:optionId/vote')
 // POST a vote to the poll option
 .post(canVote, pollHandlers.addVote);

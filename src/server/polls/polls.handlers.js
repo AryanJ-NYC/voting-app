@@ -41,6 +41,14 @@ module.exports.deleteById = function (req, res) {
   }
 };
 
+module.exports.addOption = function (req, res) {
+  req.poll.options.push({ name: req.body.optionName });
+  req.poll.save(function (err) {
+    if (err) return res.status(err.statusCode).json({ 'message': err.message });
+    res.json(req.poll);
+  })
+};
+
 module.exports.addVote = function (req, res) {
   let ipAddress = req.headers['x-forwarded-for'] || req.ip;
 
