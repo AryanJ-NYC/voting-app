@@ -9,7 +9,6 @@ import { UserService } from '../../users/shared/user.service';
 
 @Injectable()
 export class UserPollListResolve implements Resolve<Poll[]> {
-  private user: User;
   constructor(
     private pollService: PollService,
     private userService: UserService
@@ -19,7 +18,6 @@ export class UserPollListResolve implements Resolve<Poll[]> {
     let sessionObservable = this.userService.getSession()
       .map(user => {
         if (user) {
-          this.user = user;
           return user;
         } else {
           console.error("USER NOT FOUND");
