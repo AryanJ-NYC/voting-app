@@ -49,7 +49,7 @@ app.use(function (err, req, res, next) {
 // routes
 let routes = require('./routes');
 app.use('/api', routes);
-app.get(['/', '/polls', '/polls/:id'], function (req, res) {
+app.get(['/', '/polls', '/polls/:id', '/my-polls'], function (req, res) {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 

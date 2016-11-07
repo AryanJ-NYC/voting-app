@@ -23,12 +23,11 @@ export class UserPollListComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.forEach((data: { user: User }) => {
       this.user = data.user;
-      console.log(this.user);
     });
 
     this.pollService.getPollsByUserID(this.user._id)
         .subscribe(polls => {
           this.polls = polls;
-        })
+        });
   }
 }

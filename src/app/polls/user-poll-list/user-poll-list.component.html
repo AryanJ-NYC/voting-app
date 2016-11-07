@@ -1,1 +1,4 @@
-<p>UserPollListComponentWorks!</p>
+<div *ngFor="let poll of polls" class="col-xs-12 col-md-4">
+  <h4 class="text-center">{{ poll.title }}</h4>
+  <poll-chart class="col-xs-12" [poll]="poll"></poll-chart>
+</div>

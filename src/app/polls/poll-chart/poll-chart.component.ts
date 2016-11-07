@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { Poll } from '../shared/poll.model';
 import { PollService } from '../shared/poll.service';
@@ -9,21 +9,36 @@ import { PollService } from '../shared/poll.service';
   templateUrl: './poll-chart.component.html'
 })
 
-export class PollChartComponent {
-  @Input() private poll: Poll = new Poll();
+export class PollChartComponent implements OnChanges {
+  @Input() private poll: Poll;
   private votes: number[];
   private optionNames: string[];
 
-  constructor(pollService: PollService) {
+  constructor(private pollService: PollService) {
     pollService.pollCreated$.subscribe(
         poll => {
           this.poll = poll;
-          this.votes = [];
-          this.optionNames = [];
-          for (let option of this.poll.options) {
-            this.votes.push(option.votes.length);
-            this.optionNames.push(option.name);
-          }
+          this.setOptionNames();
+          this.setVotes();
         });
+  }
+
+  ngOnChanges(): void {
+    if (this.poll) {
+      this.setOptionNames();
+      this.setVotes();
+    }
+  }
+
+  private setOptionNames(): void {
+    this.optionNames = this.poll.options.map(function (option) {
+      return option.name;
+    });
+  }
+
+  private setVotes(): void {
+    this.votes = this.poll.options.map(function (option) {
+      return option.votes.length;
+    });
   }
 }
