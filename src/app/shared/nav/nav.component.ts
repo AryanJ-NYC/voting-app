@@ -27,7 +27,7 @@ export class NavComponent implements OnInit {
     private userService: UserService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userService.getSession()
       .subscribe(
         user => {
@@ -44,23 +44,27 @@ export class NavComponent implements OnInit {
       );
   }
 
-  changeUser(user: User) {
+  private changeUser(user: User): void {
     this.user = user;
   }
 
-  showCreatePollModal(): void {
+  private collapseNav(): void {
+    this.isCollapsed = true;
+  }
+
+  private showCreatePollModal(): void {
     this.createPollModal.showModal();
   }
 
-  showLoginModal(): void {
+  private showLoginModal(): void {
     this.loginModal.showModal();
   }
 
-  showSignupModal(): void {
+  private showSignupModal(): void {
     this.signupModal.showModal();
   }
 
-  logout(): void {
+  private logout(): void {
     this.userService.destroySession().subscribe(
       () => {
         this.user = null;

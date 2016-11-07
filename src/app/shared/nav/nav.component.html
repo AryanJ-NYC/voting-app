@@ -15,11 +15,11 @@
 
     <div *ngIf="!fetchingUserData" class="collapse navbar-collapse" [collapse]="isCollapsed" id="nav-items">
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!user"><a (click)="showLoginModal()">Login</a></li>
-        <li *ngIf="!user"><a (click)="showSignupModal()">Sign Up</a></li>
-        <li *ngIf="user"><a routerLink="/my-polls">My Polls</a></li>
-        <li *ngIf="user"><a (click)="showCreatePollModal()">Create Poll</a></li>
-        <li *ngIf="user"><a (click)="logout()">Logout</a></li>
+        <li *ngIf="!user"><a (click)="showLoginModal(); collapseNav();">Login</a></li>
+        <li *ngIf="!user"><a (click)="showSignupModal(); collapseNav();">Sign Up</a></li>
+        <li *ngIf="user"><a (click)="collapseNav();" routerLink="/my-polls">My Polls</a></li>
+        <li *ngIf="user"><a (click)="showCreatePollModal(); collapseNav();">Create Poll</a></li>
+        <li *ngIf="user"><a (click)="logout(); collapseNav();">Logout</a></li>
       </ul>
     </div>
   </div><!-- /.container -->
