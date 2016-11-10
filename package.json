@@ -60,7 +60,7 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "morgan": "^1.7.0",
-    "steal": "^0.16.41"
+    "steal": "^0.16.42"
   },
   "bugs": {
     "url": "https://github.com/AryanJ-NYC/voting-app/issues"
