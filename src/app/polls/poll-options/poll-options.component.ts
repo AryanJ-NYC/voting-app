@@ -26,7 +26,7 @@ export class PollOptionsComponent {
   }
 
   private isOptionSelected(): boolean {
-    if (this.optionId && this.optionId.length > 0) return true;
+    if (this.optionId && this.optionId != 'other' && this.optionId.length > 0) return true;
     return null;
   }
 
