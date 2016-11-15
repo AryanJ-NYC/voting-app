@@ -8,7 +8,7 @@ import { User } from './user.model';
 @Injectable()
 export class UserService {
   // Observable string sources
-  private userLoggedInSource = new BehaviorSubject<User>();
+  private userLoggedInSource = new BehaviorSubject<User>(null);
 
   // Observable string streams
   userLoggedIn$ = this.userLoggedInSource.asObservable();
