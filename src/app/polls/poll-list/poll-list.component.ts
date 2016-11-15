@@ -32,7 +32,12 @@ export class PollListComponent implements OnInit {
     userService.userLoggedIn$.subscribe(
       user => { this.user = user; },
       err => { console.error(err); }
-    )
+    );
+  }
+
+  ngOnInit(): void {
+    this.getPolls();
+    this.getUser();
   }
 
   private goToPollDetail(poll: Poll): void {
@@ -44,11 +49,7 @@ export class PollListComponent implements OnInit {
     this.navService.openLoginModal(true);
   }
 
-  ngOnInit(): void {
-    this.getPolls();
-  }
-
-  getPolls(): void {
+  private getPolls(): void {
     this.pollService.getAll()
       .subscribe(
         polls => {
@@ -58,5 +59,15 @@ export class PollListComponent implements OnInit {
           console.error(err);
         }
       );
+  }
+
+  private getUser(): void {
+    this.userService.getSession().subscribe(
+      user => {
+        this.user = user;
+        this.userService.broadcastUser(this.user);
+      },
+      err => { this.user = null; }
+    );
   }
 }

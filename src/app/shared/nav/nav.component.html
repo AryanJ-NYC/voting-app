@@ -13,7 +13,7 @@
       </button>
     </div>
 
-    <div *ngIf="!fetchingUserData" class="collapse navbar-collapse" [collapse]="isCollapsed" id="nav-items">
+    <div class="collapse navbar-collapse" [collapse]="isCollapsed" id="nav-items">
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!user"><a (click)="showLoginModal(); collapseNav();">Login</a></li>
         <li *ngIf="!user"><a (click)="showSignupModal(); collapseNav();">Sign Up</a></li>
