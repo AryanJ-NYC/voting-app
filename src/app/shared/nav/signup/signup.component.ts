@@ -29,6 +29,7 @@ export class SignupModalComponent {
         .subscribe(
           user => {
             if (user.hasOwnProperty('_id')) {
+              this.userService.broadcastUser(user);
               this.onSubmitted.emit(user);
               this.user = new User();
               this.confirmPassword = '';

@@ -1,11 +1,17 @@
 <div class="container">
-  <alert *ngIf="errorMessage">{{ errorMessage }}</alert>
-  <poll-options class="col-md-4 col-xs-12" [canVote]="canVote" [poll]="poll" (onVoted)="displayVoteSuccess($event)"></poll-options>
-  <poll-chart class="col-md-8 col-xs-12" [poll]="poll"></poll-chart>
-  <button class="btn btn-primary" (click)="location.back()">
-    <i class="fa fa-angle-double-left" aria-hidden="true"></i>  Back
-  </button>
-  <button *ngIf="user && user._id == poll.creatorId" (click)="deletePoll()" class="btn btn-danger">
-    <i class="fa fa-trash-o pull-left" aria-hidden="true"></i> Delete Poll
-  </button>
+  <div class="row">
+    <alert class="col-xs-12" *ngIf="errorMessage">{{ errorMessage }}</alert>
+    <poll-options class="col-md-4 col-xs-12" [canVote]="canVote" [poll]="poll" (onVoted)="displayVoteSuccess($event)"></poll-options>
+    <poll-chart class="col-md-8 col-xs-12" [poll]="poll"></poll-chart>
+  </div>
+  <div class="row">
+    <div class="button-group col-xs-2">
+    <button class="btn btn-primary" (click)="location.back()">
+      <i class="fa fa-angle-double-left" aria-hidden="true"></i>  Back
+    </button>
+    <button *ngIf="user && user._id == poll.creatorId" (click)="deletePoll()" class="btn btn-danger">
+      <i class="fa fa-trash-o pull-left" aria-hidden="true"></i> Delete Poll
+    </button>
+    </div>
+  </div>
 </div>
