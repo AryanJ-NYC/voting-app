@@ -7,6 +7,7 @@ import './rxjs-operators';
 import { AppComponent }  from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavModule } from './shared/nav/nav.module';
+import { NavService } from './shared/nav/shared/nav.service';
 import { PollDetailComponent } from './polls/poll-detail/poll-detail.component';
 import { PollDetailResolve } from './polls/poll-detail/poll-detail-resolve.service';
 import { PollListComponent } from './polls/poll-list/poll-list.component';
@@ -29,7 +30,7 @@ import { UserPollListResolve } from './polls/user-poll-list/user-poll-list-resol
   ],
   declarations: [ AppComponent, FooterComponent ],
   bootstrap:    [ AppComponent ],
-  providers:    [ PollDetailResolve, UserPollListResolve, PollService, UserService ]
+  providers:    [ PollDetailResolve, UserPollListResolve, NavService, PollService, UserService ]
 })
 
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/components/modal';
 
+import { NavService } from '../shared/nav.service';
 import { User } from '../../../users/shared/user.model';
 import { UserService } from '../../../users/shared/user.service';
 
@@ -17,7 +18,20 @@ export class LoginModalComponent {
   @ViewChild('loginModal') loginModal: ModalDirective;
   private errorMessage: string;
 
-  constructor (private userService: UserService) { }
+  constructor (
+    private navService: NavService,
+    private userService: UserService
+  ) {
+    this.navService.isLoginModalOpen$.subscribe(
+      isOpen => {
+        if (isOpen) {
+          this.showModal();
+        } else {
+          this.hideModal();
+        }
+      }
+    );
+  }
 
   private shareUser(user: User): void {
     this.userService.broadcastUser(user);

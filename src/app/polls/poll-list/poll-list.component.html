@@ -5,4 +5,5 @@
       {{ poll.title }}
     </a>
   </div>
+  <p *ngIf="!user"><a (click)="openLoginModal()">Login</a> to create polls.</p>
 </div>
