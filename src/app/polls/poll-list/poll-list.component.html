@@ -1,9 +1,9 @@
 <div class="container">
   <h1 class="text-center">Polls</h1>
-  <div class="list-group">
+  <div class="list-group row">
     <a *ngFor="let poll of polls" (click)="goToPollDetail(poll)" class="btn text-center list-group-item col-lg-6 col-xs-12">
       {{ poll.title }}
     </a>
   </div>
-  <p *ngIf="!user"><a (click)="openLoginModal()">Login</a> to create polls.</p>
+  <p *ngIf="!user" class="row"><a (click)="openLoginModal()">Login</a> to create polls.</p>
 </div>
