@@ -20,8 +20,9 @@
             <label>Password</label>
             <input type="password" class="form-control" [(ngModel)]="user.password" name="password" required >
           </div>
-          <button type="submit" class="btn btn-warning btn-lg" (click)="login()">Login</button>
+          <button type="submit" class="btn btn-warning" (click)="login()">Login</button>
         </form>
+        <button class="btn btn-twitter" (click)="openTwitterLogin()"><i class="fa fa-twitter"></i> Login with Twitter</button>
       </div>
     </div>
   </div>

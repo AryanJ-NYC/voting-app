@@ -7,7 +7,8 @@ import { UserService } from '../../../users/shared/user.service';
 @Component({
   moduleId: module.id,
   selector: 'login-modal',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: [ './login.component.css' ]
 })
 
 export class LoginModalComponent {
@@ -22,6 +23,35 @@ export class LoginModalComponent {
     this.userService.broadcastUser(user);
   }
 
+  private openTwitterLogin(): void {
+    this.hideModal();
+    this.openDialog('api/sessions/twitter', null, null, win => {
+      this.userService.getSession()
+        .subscribe(user => {
+          if (user.hasOwnProperty('_id')) {
+            this.onSubmitted.emit(this.user);
+            this.shareUser(this.user);
+            this.user = new User();
+          }
+        });
+    });
+  }
+
+  private openDialog(uri, name, options, closeCallback) {
+    const win = window.open(uri, name, options);
+    const interval = window.setInterval(function() {
+      try {
+        if (win == null || win.closed) {
+          window.clearInterval(interval);
+          closeCallback(win);
+        }
+      }
+      catch (e) {
+      }
+    }, 250);
+    return win;
+  };
+
   private clearErrorMessage(): void {
     this.errorMessage = '';
   }
@@ -34,7 +64,7 @@ export class LoginModalComponent {
                 this.shareUser(user);
                 this.onSubmitted.emit(user);
                 this.user = new User();
-                this.loginModal.hide();
+                this.hideModal();
               }
             },
             error => {
@@ -44,5 +74,9 @@ export class LoginModalComponent {
 
   showModal(): void {
     this.loginModal.show();
+  }
+
+  hideModal(): void {
+    this.loginModal.hide();
   }
 }

@@ -50,7 +50,7 @@ export class UserService {
   getSession(): Observable<User> {
     return this.http.get(this.sessionsRoute)
                .map(res => res.json())
-               .catch(err => Observable.throw(err.message));
+               .catch(err => Observable.throw(err));
   }
 
   destroySession(): Observable<void> {

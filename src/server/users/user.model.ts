@@ -4,6 +4,7 @@ import bcrypt = require('bcrypt-nodejs');
 
 interface IUser extends mongoose.Document {
   email: string;
+  twitterId: string;
   password: string;
   updatedAt: string;
   createdAt: string;
@@ -12,10 +13,10 @@ interface IUser extends mongoose.Document {
 let userSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: [true, 'An email address is required'],
     unique: true,
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address.'] },
-  password: { type: String, required: [true, 'A password is required.'] },
+    twitterId: String,
+  password: { type: String },
 }, { timestamps: true });
 
 userSchema.pre('save', function (next) {

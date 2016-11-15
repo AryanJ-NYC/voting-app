@@ -11,7 +11,7 @@ const express = require('express'),
 
 if (process.env.NODE_ENV == 'development') {
   require('dotenv').config();
-  app.use(morgan('dev'));
+  app.use(morgan('dev', { skip: function (req, res) { return res.statusCode < 400 } }));
 } else {
   app.use(morgan('combined'));
 }

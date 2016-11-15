@@ -23,9 +23,8 @@ router.post('/', function (req, res, next) {
 router.get('/:userId/polls', function (req, res, next) {
   Poll.find({ 'creatorId': req.params.userId }, function (err, polls) {
     if (err) return res.status(err.statusCode).json({'message': err.message});
-
     res.json(polls);
-  })
+  });
 });
 
 module.exports = router;
