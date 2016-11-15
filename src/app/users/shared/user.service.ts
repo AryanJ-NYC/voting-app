@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 
 import { User } from './user.model';
 
 @Injectable()
 export class UserService {
   // Observable string sources
-  private userLoggedInSource = new Subject<User>();
+  private userLoggedInSource = new BehaviorSubject<User>();
 
   // Observable string streams
   userLoggedIn$ = this.userLoggedInSource.asObservable();
@@ -25,6 +25,10 @@ export class UserService {
 
   broadcastUser(user: User): void {
     this.userLoggedInSource.next(user);
+  }
+
+  getCurrentUser(): User {
+    return this.userLoggedInSource.getValue();
   }
 
   login(user: User): Observable<User> {

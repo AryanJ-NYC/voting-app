@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription }   from 'rxjs/Subscription';
 
 import { NavService } from '../../shared/nav/shared/nav.service';
 import { Poll } from '../shared/poll.model';
@@ -18,18 +19,21 @@ export class PollListComponent implements OnInit {
   private polls: Poll[];
   private user: User;
 
+  private pollSubscription: Subscription;
+  private userSubscription: Subscription;
+
   constructor(
     private navService: NavService,
     private pollService: PollService,
     private userService: UserService,
     private router: Router
   ) {
-    pollService.pollCreated$.subscribe(
+    this.pollSubscription = pollService.pollCreated$.subscribe(
       poll => {
         this.polls.push(poll);
       });
 
-    userService.userLoggedIn$.subscribe(
+    this.userSubscription = userService.userLoggedIn$.subscribe(
       user => { this.user = user; },
       err => { console.error(err); }
     );
@@ -38,6 +42,11 @@ export class PollListComponent implements OnInit {
   ngOnInit(): void {
     this.getPolls();
     this.getUser();
+  }
+
+  ngOnDestroy(): void {
+    this.pollSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 
   private goToPollDetail(poll: Poll): void {
@@ -62,12 +71,6 @@ export class PollListComponent implements OnInit {
   }
 
   private getUser(): void {
-    this.userService.getSession().subscribe(
-      user => {
-        this.user = user;
-        this.userService.broadcastUser(this.user);
-      },
-      err => { this.user = null; }
-    );
+    this.user = this.userService.getCurrentUser();
   }
 }
