@@ -1,5 +1,5 @@
 # Vote On It
-I created this side project as a solution to a [Free Code Camp project suggestion](https://www.freecodecamp.com/challenges/build-a-voting-app).  I used Angular 2 (written in TypeScript) as a front-end, Node.js (with ExpressJS as a framework) as a back-end and MongoDB as a database.
+I created this side project as a solution to a [Free Code Camp project suggestion](https://www.freecodecamp.com/challenges/build-a-voting-app).  I used Angular 2 (written in TypeScript) as a front-end, Node.js (with ExpressJS as a framework) as a back-end and MongoDB as a database.  Users can log in using Twitter OAuth authorization.
 ## Installation
 1. `git clone https://github.com/AryanJ-NYC/voting-app.git`
 2. `cd voting-app`
