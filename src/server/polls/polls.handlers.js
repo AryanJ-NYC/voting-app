@@ -42,12 +42,16 @@ module.exports.deleteById = function (req, res) {
 };
 
 module.exports.addOption = function (req, res) {
-  req.poll.options.push(req.body);
-  req.poll.save(function (err) {
-    if (err) return res.status(err.statusCode).json({ 'message': err.message });
-    let newOption = req.poll.options[req.poll.options.length - 1];
-    res.json(newOption);
-  })
+  if (req.isAuthenticated()) {
+    req.poll.options.push(req.body);
+    req.poll.save(function (err) {
+      if (err) return res.status(err.statusCode).json({'message': err.message});
+      let newOption = req.poll.options[req.poll.options.length - 1];
+      res.json(newOption);
+    });
+  } else {
+    res.status(401).json({ 'message': 'Please log in to create a new poll option. '});
+  }
 };
 
 module.exports.addVote = function (req, res) {

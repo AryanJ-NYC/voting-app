@@ -6,9 +6,10 @@
       <option *ngFor="let option of poll.options" value="{{option._id}}">
         {{ option.name }}
       </option>
-      <option value="other">Other</option>
+      <option *ngIf="user" value="other">Other</option>
     </select>
-    <div class="form-group" *ngIf="optionId=='other'">
+    <p *ngIf="!user"><a (click)="openLoginModal()">Login</a> to add other options.</p>
+    <div class="form-group" *ngIf="user && optionId=='other'">
       <label>New Option: <input type="text" class="form-control" [(ngModel)]="newOptionName" name="newOptionName" [disabled]="isOptionSelected()" /></label>
     </div>
   </div>
