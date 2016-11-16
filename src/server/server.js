@@ -7,7 +7,7 @@ const express = require('express'),
       passport = require('passport'),
       path = require('path'),
       portNumber = process.env.PORT || process.argv[2] || 8080,
-      session = require('express-session');
+      session = require('cookie-session');
 
 if (process.env.NODE_ENV == 'development') {
   require('dotenv').config();
@@ -24,8 +24,9 @@ mongoose.connect(process.env.MONGODB_URI, function () {
 
 // required for passport
 app.use(session({
+  name: 'session',
   secret: process.env.PASSPORT_SECRET,
-  saveUninitialized: false
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 app.use(passport.initialize());
 app.use(passport.session());
