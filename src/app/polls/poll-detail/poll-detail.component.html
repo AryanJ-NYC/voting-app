@@ -9,6 +9,9 @@
       <button class="btn btn-primary" (click)="location.back()">
         <i class="fa fa-angle-double-left" aria-hidden="true"></i>  Back
       </button>
+      <button class="btn btn-twitter" (click)="openTwitterWindow()">
+        <i class="fa fa-twitter" aria-hidden="true"></i> Share
+      </button>
       <button *ngIf="user && user._id == poll.creatorId" (click)="deletePoll()" class="btn btn-danger">
         <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Poll
       </button>

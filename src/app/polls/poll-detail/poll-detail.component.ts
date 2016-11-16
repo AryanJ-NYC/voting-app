@@ -11,7 +11,8 @@ import { UserService } from '../../users/shared/user.service';
 @Component({
   moduleId: module.id,
   selector: 'poll-detail',
-  templateUrl: './poll-detail.component.html'
+  templateUrl: './poll-detail.component.html',
+  styleUrls: [ './poll-detail.component.css' ]
 })
 
 export class PollDetailComponent implements OnInit {
@@ -62,6 +63,13 @@ export class PollDetailComponent implements OnInit {
 
   private sharePoll(poll: Poll): void {
     this.pollService.broadcastPoll(poll);
+  }
+
+  private openTwitterWindow(): void {
+    console.log(window.location.hostname + window.location.pathname);
+    const tweet = `Check out this poll! http://${window.location.hostname}${window.location.pathname}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${tweet}`;
+    window.open(twitterUrl, "Share on Twitter", "height=443,width=500");
   }
 
   private displayVoteSuccess(isVoteSuccess: boolean): void {
