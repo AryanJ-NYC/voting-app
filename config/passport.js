@@ -25,7 +25,7 @@ module.exports = function (passport) {
       // find user that is same as form email to see if already exists
       User.findOne({'email': email}, function (err, user) {
         if (err) return done(err, false);
-        if (user) return done(null, false, { message: 'Email address already registered.' });
+        if (user) return done(null, false, { 'message': 'Email address already registered.' });
 
         // if user is not found, createPoll new user
         let newUser = new User({
@@ -75,8 +75,7 @@ module.exports = function (passport) {
         });
         newUser.save(function (err) {
           if (err) {
-            let errMessage = err.errors.email.message || err.errors.password.message || err.message;
-            return done(null, false, { message: errMessage });
+            return done(null, false);
           }
 
           return done(null, newUser);

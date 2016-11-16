@@ -49,7 +49,7 @@ router.get('/', function (req, res, next) {
       'twitterId': req.user.twitterId
     });
   } else {
-    res.status(401).json({ "error": "You are not authorized to see this information."});
+    res.status(401).json({ 'message': 'You are not authorized to see this information.' });
   }
 });
 

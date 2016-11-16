@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/components/modal';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { NavService } from '../shared/nav.service';
 import { User } from '../../../users/shared/user.model';
@@ -20,6 +21,7 @@ export class LoginModalComponent {
 
   constructor (
     private navService: NavService,
+    private toastr: ToastsManager,
     private userService: UserService
   ) {
     this.navService.isLoginModalOpen$.subscribe(
@@ -41,13 +43,19 @@ export class LoginModalComponent {
     this.hideModal();
     this.openDialog('api/sessions/twitter', null, null, win => {
       this.userService.getSession()
-        .subscribe(user => {
-          if (user.hasOwnProperty('_id')) {
-            this.onSubmitted.emit(this.user);
-            this.shareUser(this.user);
-            this.user = new User();
-          }
-        });
+        .subscribe(
+          user => {
+            if (user.hasOwnProperty('_id')) {
+              this.onSubmitted.emit(this.user);
+              this.shareUser(this.user);
+              this.user = new User();
+            }
+          },
+          err => {
+            if (err.status == 401) {
+              this.toastr.error('Failed to log in with Twitter', 'Failure', { dismiss: 'auto', toastLife: 2000, showCloseButton: true });
+            }
+          });
     });
   }
 
